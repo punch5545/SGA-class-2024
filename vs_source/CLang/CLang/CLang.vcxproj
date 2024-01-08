@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CPP\Source\06_Constructor.cpp" />
+    <ClCompile Include="CPP\Header\05_function.h" />
     <ClCompile Include="CPP\Source\00_OOP.cpp" />
+    <ClCompile Include="CPP\Source\05_function.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CPP\Header\06_Constructor.h" />
     <ClInclude Include="CPP\Header\00_OOP.h" />
     <ClInclude Include="CPP\Header\stdafx.h" />
   </ItemGroup>
@@ -126,6 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)CPP/Header</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
