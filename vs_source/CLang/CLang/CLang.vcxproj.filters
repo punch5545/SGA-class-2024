@@ -11,10 +11,12 @@
     <ClCompile Include="CPP\Source\05_function.cpp" />
     <ClCompile Include="CPP\Header\05_function.h" />
     <ClCompile Include="CPP\Source\06_Constructor.cpp" />
+    <ClCompile Include="CPP\Source\08_Inheritance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPP\Header\00_OOP.h" />
     <ClInclude Include="CPP\Header\stdafx.h" />
     <ClInclude Include="CPP\Header\06_Constructor.h" />
+    <ClInclude Include="CPP\Header\08_Inheritance.h" />
   </ItemGroup>
 </Project>
