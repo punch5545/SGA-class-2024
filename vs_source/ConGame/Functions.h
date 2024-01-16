@@ -7,6 +7,13 @@ Tetrimino tetriminos[7];
 bool isStart = false;
 int deltaTime = 0;
 
+int highScore = 0;
+int score = 0;
+
+int bestCombo = 0;
+int combo = 0;
+
+
 void MoveCursor(int x, int y);
 void exitApp();
 
@@ -24,16 +31,23 @@ void PrintBackground();
 
 
 void PrintToPos(const char* str, int x, int y);
+void PrintToPos(int x, int y, const char* str, ...);
+
 void PrintBlock(int x, int y);
 void PrintBlock(int x, int y, bool isGhost);
 void PrintNext();
 void PrintHold();
+
+void Hold();
 
 void MoveLeft();
 void MoveRight();
 void MoveDown();
 void HardDown();
 void RemoveLine();
+
+void AddCombo();
+void AddScore(int lineCount);
 
 void PrintGhost();
 
@@ -69,7 +83,7 @@ Tetrimino NextBlock = {
 };
 
 Tetrimino HoldBlock = {
-	0,
+	-1,
 	{
 		{0,0,0,0},
 		{0,0,0,0},
@@ -198,8 +212,8 @@ void StartGame()
 	PrintBackground();
 	PrintToPos("HOLD", 31, 1);
 	PrintToPos("NEXT", 31, 6);
-	PrintBlock(15, 2);
-	PrintBlock(15, 7);
+	PrintToPos("SCORE", 31, 11);
+	PrintToPos("COMBO", 31, 13);
 
 	while (true)
 	{
@@ -239,13 +253,19 @@ void Update() {
 	}
 
 	deltaTime++;
-	PrintNext();
-	PrintHold();
+
+
+	PrintToPos(32, 12, "%d", score);
+	PrintToPos(33, 14, "%d", combo > 0 ? combo - 1 : 0);
 	
-	PrintBlock(CurrentBlock.x, CurrentBlock.y);
 	PrintGhost();
 
+	PrintBlock(CurrentBlock.x, CurrentBlock.y);
+
 	CheckGameOver();
+
+	PrintNext();
+	PrintHold();
 }
 
 
@@ -278,6 +298,7 @@ void MoveBlock(int key)
 		case KEY_ENTER:
 			break;
 		case KEY_C:
+			Hold();
 			break;
 		case KEY_LEFT_CTRL:
 			CurrentBlock = RotateBlock(CurrentBlock, -1, n);
@@ -286,6 +307,32 @@ void MoveBlock(int key)
 
 	}
 }
+
+void Hold()
+{
+	Tetrimino tmp;
+
+	if (HoldBlock.index < 0)
+	{
+		HoldBlock = CurrentBlock;
+		CurrentBlock = NextBlock;
+
+		int startBlock = rand() % 7;
+		NextBlock = tetriminos[startBlock];
+	}
+	else
+	{
+		tmp = HoldBlock;
+		HoldBlock = CurrentBlock;
+		CurrentBlock = tmp;
+	}
+
+	CurrentBlock.x = 4;
+	CurrentBlock.y = 1;
+
+	PrintHold();
+}
+
 
 void CheckBottomCollision()
 {
@@ -459,12 +506,63 @@ void HardDown()
 
 void RemoveLine()
 {
-	for (int i = 1; i < 21; i++)
-	{
+	bool isLine = false;
+	int lineCount = 0;
 
+	for (int y = 1; y < 21; y++)
+	{
+		for (int x = 1; x < 11; x++)
+		{
+			if (TetrisMap[y][x] == 0)
+			{
+				isLine = false;
+				break;
+			}
+			else
+				isLine = true;
+		}
+		if (isLine)
+		{
+			for (int x = 1; x < 11; x++)
+			{
+				TetrisMap[y][x] = 0; // 한줄 제거
+			}
+
+			for (int i = y; i > 1; i--) // 한줄씩 내리기
+			{
+				for (int j = 1; j < 11; j++)
+				{
+					TetrisMap[i][j] = TetrisMap[i - 1][j];
+				}
+			}
+			lineCount++;
+		}
 	}
+
+if (lineCount > 0)
+	{
+		AddScore(lineCount);
+		AddCombo();
+	}
+	else
+		combo = 0;
 }
 
+void AddScore(int lineCount)
+{
+	score += ( 90 + (combo * 10) ) * lineCount;
+	if (highScore < score)
+		highScore = score;
+
+}
+
+void AddCombo()
+{
+	combo++;
+
+	if(bestCombo < combo)
+		bestCombo = combo;
+}
 
 void BlockToMap()
 {
@@ -626,6 +724,18 @@ void PrintToPos(const char* str, int x, int y)
 	printf(str);
 }
 
+void PrintToPos(int x, int y, const char* str, ...)
+{
+	MoveCursor(x, y);
+
+	int _Result;
+	va_list _ArgList;
+	__crt_va_start(_ArgList, str);
+	_Result = _vfprintf_l(stdout, str, NULL, _ArgList);
+	__crt_va_end(_ArgList);
+
+};
+
 void PrintBlock(int x, int y)
 {
 	for (int i = 0; i < 4; i++)
@@ -633,7 +743,7 @@ void PrintBlock(int x, int y)
 		for (int j = 0; j < 4; j++)
 		{
 			if (CurrentBlock.bricks[j][i] == 1)
-				PrintToPos(BrickSym, (x + i) * 2, y + j);
+				PrintToPos((x + i) * 2, y + j, "%s%s%s", "\033[0;34m", BrickSym, "\033[0m");
 		}
 	}
 }
@@ -641,15 +751,24 @@ void PrintBlock(int x, int y)
 void PrintBlock(int x, int y, bool isGhost)
 {
 	const char* sym = isGhost ? "▤" : BrickSym;
+	char* symColor = NULL;
+	symColor = (char*) malloc(sizeof(char) * 10);
+
+	if(isGhost)
+		strcpy_s(symColor, sizeof(char) * 10, "\033[0;36m");
+	else
+		strcpy_s(symColor, sizeof(char) * 10, "\033[0;34m");
 
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
 			if(CurrentBlock.bricks[j][i] == 1)
-				PrintToPos(sym, (x + i)*2, y + j);
+				PrintToPos((x + i)*2, y + j, "%s%s%s", symColor, sym, "\033[0m");
 		}
 	}
+
+	free(symColor);
 }
 
 
@@ -707,9 +826,9 @@ void PrintHold()
 		for (int j = 0; j < 4; j++)
 		{
 			if (HoldBlock.bricks[j][i] == 1)
-				PrintToPos(BrickSym, (i + 15) * 2, j + 7);
+				PrintToPos(BrickSym, (i + 15) * 2, j + 2);
 			else
-				PrintToPos("  ", (i + 15) * 2, j + 7);
+				PrintToPos("  ", (i + 15) * 2, j + 2);
 
 		}
 	}
@@ -726,31 +845,31 @@ void CheckGameOver()
 
 void PrintGhost()
 {
-	//int ghostY = CurrentBlock.y;
-	//bool isCollision = false;
+	int ghostY = CurrentBlock.y;
+	bool isCollision = false;
 
-	//while (!isCollision)
-	//{
-	//	ghostY++;
-	//	for (int y = 0; y < 4; y++) {
-	//		for (int x = 0; x < 4; x++)
-	//		{
-	//			if (CurrentBlock.bricks[y][x] != 0)
-	//			{
-	//				if (CurrentBlock.y + y + 1 >= 21)
-	//				{
-	//					isCollision = true;
-	//					break;
-	//				}
-	//				if (TetrisMap[CurrentBlock.y + y + 1][CurrentBlock.x + x])
-	//				{
-	//					isCollision = true;
-	//					break;
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
+	while (!isCollision)
+	{
+		ghostY++;
+		for (int y = 0; y < 4; y++) {
+			for (int x = 0; x < 4; x++)
+			{
+				if (CurrentBlock.bricks[y][x] != 0)
+				{
+					if (ghostY + y + 1 >= 21)
+					{
+						isCollision = true;
+						break;
+					}
+					if (TetrisMap[ghostY + y + 1][CurrentBlock.x + x])
+					{
+						isCollision = true;
+						break;
+					}
+				}
+			}
+		}
+	}
 
-	//PrintBlock(CurrentBlock.x, ghostY, true);
+	PrintBlock(CurrentBlock.x, ghostY, true);
 }
