@@ -10,52 +10,83 @@
 #define X_WALL ( X_LENGTH - 3 )
 #define Y_WALL ( Y_LENGTH - 1 )
 
-void MoveCursor(int x, int y);
+#define HEARTS_CNT 4
 
+typedef struct Heart {
+    int Shape[10][4] = {
+        { 3, 4, 8, 9 },
+        { 2, 5, 7, 10 },
+        { 1, 6, 11, -1 },
+        { 1, 11, -1, -1 },
+        { 1, 11, -1, -1 },
+        { 2, 10, -1, -1 },
+        { 3, 9, -1, -1 },
+        { 4, 8, -1, -1 },
+        { 5, 7, -1, -1 },
+        { 6, -1, -1, -1 }
+    };
+    int CoordX = 0;
+    int CoordY = 0;
+    int DirectionX = 0;
+    int DirectionY = 0;
+
+} Heart;
+
+void MoveCursor(int x, int y);
+void MoveHeart(Heart* heart);
 
 void PrintBackground();
-void PrintHeart(int x, int y);
+void PrintHeart(Heart heart);
+Heart PrintHeart(int xc, int yc);
+
+void Update();
+void InitHearts();
 
 char screen1[Y_LENGTH][X_LENGTH] = { 0 };
 const unsigned char Sqr1 = -95;
 const unsigned char Sqr2 = -31;
 
-int x = 0;
-int yc = 0;
-int x_direction = 0;
-int y_direction = 0;
+Heart hearts[HEARTS_CNT];
 
 int main()
 {
     ZeroMemory(screen1, 121 * 30);
+
+    srand(time(NULL));
+
     while (true)
     {
-        MoveCursor(0, 0);
+        Update();
+        Sleep(75);
+    }
+}
 
-        for (int y = 0; y < Y_LENGTH; y++)
-        {
-            PrintBackground();
-            PrintHeart(x + 1, yc);
-            printf("%s\n", screen1[y]);
-        }
+void Update()
+{
+    srand(time(NULL));
+    MoveCursor(0, 0);
 
-        
-        if (x_direction == 0) x++;
-        else x--;
+    PrintBackground();
 
-        if (y_direction == 0) yc++;
-        else yc--;
-
-        if (x > 90 && x_direction == 0) x_direction = 1;
-        if (x < 1 && x_direction == 1) x_direction = 0;
-
-        if (yc > 17 && y_direction == 0) y_direction = 1;
-        if (yc < 3 && y_direction == 1) y_direction = 0;
-
-
-        Sleep(10);
+    for (int i = 0; i < HEARTS_CNT; i++)
+    {
+        MoveHeart(&hearts[i]);
+        PrintHeart(hearts[i]);
     }
 
+    for (int y = 0; y < Y_LENGTH; y++)
+        printf("%s\n", screen1[y]);
+}
+
+void InitHearts()
+{
+    for (int i = 0; i < HEARTS_CNT; i++)
+    {
+        hearts[i] = PrintHeart((rand() % 45) * 2, rand() % 16);
+
+        hearts[i].DirectionX = rand() % 2;
+        hearts[i].DirectionY = rand() % 2;
+    }
 }
 
 void PrintBackground()
@@ -79,35 +110,33 @@ void PrintBackground()
     }
 }
 
-void PrintHeart(int xc, int yc)
+Heart PrintHeart(int xc, int yc)
 {
-    int coord[10][4] = {
-        { 3, 4, 8, 9 },
-        { 2, 5, 7, 10 },
-        { 1, 6, 11, -1 },
-        { 1, 11, -1, -1 },
-        { 1, 11, -1, -1 },
-        { 2, 10, -1, -1 },
-        { 3, 9, -1, -1 },
-        { 4, 8, -1, -1 },
-        { 5, 7, -1, -1 },
-        { 6, -1, -1, -1 }
-    };
+    Heart heart;
 
+    heart.CoordX = xc;
+    heart.CoordY = yc;
+
+    PrintHeart(heart);
+
+    return heart;
+}
+
+void PrintHeart(Heart heart)
+{
     for (int y = 0; y < 10; y++)
     {
         for (int x = 0; x < 4; x++)
         {
-            if (coord[y][x] < 0) break;
+            if (heart.Shape[y][x] < 0) break;
 
-            int x_coord = (coord[y][x] * 2) + xc;
+            int x_coord = (heart.Shape[y][x] * 2) + heart.CoordX;
 
-            screen1[y + yc][x_coord] = Sqr1;
-            screen1[y + yc][x_coord + 1] = Sqr2;
+            screen1[y + heart.CoordY][x_coord] = Sqr1;
+            screen1[y + heart.CoordY][x_coord + 1] = Sqr2;
         }
     }
 }
-
 
 void MoveCursor(int x, int y)
 {
@@ -115,6 +144,26 @@ void MoveCursor(int x, int y)
     Pos.X = x;
     Pos.Y = y;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
+}
+
+
+void MoveHeart(Heart* heart)
+{
+    if (heart->DirectionX == 0) heart->CoordX += ((rand() % 3 + 1) * 2);
+    else heart->CoordX -= ((rand() % 3 + 1) * 2);
+
+    if (heart->DirectionY == 0) heart->CoordY+= (rand() % 3 + 1);
+    else heart->CoordY-= (rand() % 3 + 1);
+
+    if (heart->DirectionX == 0 && heart->CoordX > 90)
+        heart->DirectionX = 1;
+    if (heart->DirectionX == 1 && heart->CoordX < 3)
+        heart->DirectionX = 0;
+
+    if (heart->DirectionY == 0 && heart->CoordY > 16)
+        heart->DirectionY = 1;
+    if (heart->DirectionY == 1 && heart->CoordY < 3)
+        heart->DirectionY = 0;
 }
 
 /*
