@@ -92,6 +92,9 @@ Tetrimino HoldBlock = {
 	}, 0, 0, 0, 0
 };
 
+// 테트리스 맵
+// 테두리를 제외한 나머지 부분 (y좌표 1~21, x좌표 1~11까지만 사용
+// 해당 좌표에 놓인 블럭은 1, 놓이지 않은 블럭은 0으로 가지고있음.
 int TetrisMap[22][12] =
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1},
@@ -118,6 +121,7 @@ int TetrisMap[22][12] =
 	{1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+// 각 테트리미노를 초기화 (7개)
 void InitBlocks()
 {
 	// Square
@@ -199,12 +203,11 @@ void InitBlocks()
 	};
 }
 
+// 게임 시작 함수
 void StartGame()
 {
 	time(NULL);
-	srand((unsigned int)time(NULL));
-
-	
+	srand((unsigned int)time(NULL));	
 
 	isStart = true;
 	InitBlocks();
@@ -217,15 +220,20 @@ void StartGame()
 
 	while (true)
 	{
+		// 매 프레임마다 실행하기.
+		// FRAME_PER_SECOND는 모니터의 주사율에 따라 다르며, pch.h에 선언되어 있음.
+
 		Update();
 		Sleep(FRAME_PER_SECOND);
 	}
 }
 int i = 0;
 
+// 매 프레임마다 실행되는 함수.
 void Update() {
 	PrintBackground();
 
+	// 현재 블록의 y좌표가 0이면, 블록이 등장하지 않은 것으로 간주하여 새로운 블록 생성하기
 	if (CurrentBlock.y == 0)
 	{
 		int startBlock = rand() % 7;
@@ -237,15 +245,17 @@ void Update() {
 		NextBlock = tetriminos[rand() % 7];
 	}
 
-	// Draw blocks
+	// 키 입력 처리
 	if (_kbhit())
 	{
 		int key = _getch();
 		MoveBlock(key);
 	}
 
+	// 0.3초마다 블럭의 y좌표 내림
 	if (deltaTime > (FRAME_RATE / 3))
 	{
+		// 좌표를 내리기 전에 블록 아래쪽에 다른 블록, 또는 바닥이 있다면 멈춤.
 		CheckBottomCollision();
 
 		CurrentBlock.y++;
@@ -283,6 +293,7 @@ void MoveBlock(int key)
 	switch (key)
 	{
 		case KEY_UP:
+			// 현재 블록을 회전, 함수에서 반환된 회전이 완료된 블럭을 현재 블럭으로 바꿔줌.
 			CurrentBlock = RotateBlock(CurrentBlock, 1, n);
 			break;
 		case KEY_LEFT: MoveLeft();
@@ -336,39 +347,47 @@ void Hold()
 
 void CheckBottomCollision()
 {
+	// 충돌 상태값: 기본-false (0)
 	bool isCollision = false;
 
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
+			// 블럭 아래에 뭔가 있다면
 			if (CurrentBlock.bricks[j][i] == 1 && TetrisMap[CurrentBlock.y + j + 1][CurrentBlock.x + i] == 1)
 			{
+				// 충돌 상태값을 true(1)로 변경하고 for문 빠져나감
 				isCollision = true;
 				break;
 			}
 		}
 	}
+	// 위에서 충돌 상태값이 true로 바뀌었다면 (블럭 아래에 뭔가 있다면)
 	if (isCollision)
 	{
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 4; j++)
 			{
+				// 현재 블럭의 좌표대로 Map에 그리기
+				// 바닥에 놓인 블럭으로 처리함.
 				if(CurrentBlock.bricks[j][i] == 1)
 					TetrisMap[CurrentBlock.y + j][CurrentBlock.x + i] = CurrentBlock.bricks[j][i];
 			}
 		}
 
-		// Current block to Map, Create new block
+		// 바닥에 기존 블럭이 놓였으므로 새 블럭 생성
 		int startBlock = rand() % 7;
 		CurrentBlock = tetriminos[startBlock];
 
+		// 새 블럭의 초기 위치 지정
 		CurrentBlock.x = 4;
 		CurrentBlock.y = 1;
 	}
 }
 
+// 콘솔의 커서를 X, Y 좌표로 이동함
 void MoveCursor(int x, int y)
 {
 	COORD Pos;
@@ -377,15 +396,18 @@ void MoveCursor(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
+// 프로그램 종료
 void exitApp()
 {
 	exit(0);
 }
 
+// 배경 그리기
 void PrintBackground()
 {
 	int rightWall = 118;
 
+	// 게임이 시작된 경우 테트리스 맵 배열만 그림.
 	if (isStart)
 	{
 		for (int i = 0; i < 22; i++)
@@ -397,6 +419,7 @@ void PrintBackground()
 			}
 		}
 	}
+	// 게임이 시작되지 않은 경우 인트로 화면 테두리 그리기
 	else
 	{
 		PrintToPos("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■", 0, 0);
@@ -447,7 +470,9 @@ void MoveRight() {
 void MoveDown() {
 	for (int y = 0; y < 4; y++) {
 		for (int x = 0; x < 4; x++) {
+			// 블럭과 맵을 확인해서 0이 아닌 경우 (표기되는 경우)만 실행
 			if (CurrentBlock.bricks[y][x] != 0) {
+				// 블럭을 맵으로 이동, 라인이 생성됐다면 해당 라인 삭제
 				if (CurrentBlock.y + y + 1 >= 21)
 				{
 					BlockToMap();
@@ -470,8 +495,10 @@ void MoveDown() {
 	return; 
 }
 
+// 스페이스바
 void HardDown()
 {
+	// 아래로 이동하는 코드가 충돌직전까지 수행되도록 함
 	while (true)
 	{
 		for (int y = 0; y < 4; y++) {
@@ -584,7 +611,7 @@ void BlockToMap()
 	CurrentBlock.y = 1;
 }
 
-
+// 인트로 애니메이션
 void printAnimation(int index)
 {
 	switch (index) {
@@ -702,14 +729,18 @@ void printAnimation(int index)
 	}
 }
 
+
+// 인트로 애니메이션 하단부
 void printFoot(bool isLoop)
 {
+	// 초반 1회 재생이 끝나면 Press Any Key... 문구 출력
 	if (isLoop)
 	{
 		PrintToPos("■                                                   ■    ■■    ■■■    ■■                                     ■", 0, 17);
 		PrintToPos("■                                   ■■■■    ■■■    ■■      ■        ■■                                   ■", 0, 18);
 		PrintToPos("■                                               PRESS ANY KEY TO START                                               ■", 0, 22);
 	}
+	// 초반 1회 재생일 경우 출력안함.
 	else
 	{
 		PrintToPos("■                                                   ■    ■■    ■■■    ■■                                     ■", 0, 17);
@@ -718,12 +749,14 @@ void printFoot(bool isLoop)
 	}
 }
 
+// 콘솔의 원하는 위치로 이동해 printf로 str 문자열 출력
 void PrintToPos(const char* str, int x, int y)
 {
 	MoveCursor(x, y);
 	printf(str);
 }
 
+// 위 함수와 같음, printf의 "%d" 등 변수를 받아서 출력
 void PrintToPos(int x, int y, const char* str, ...)
 {
 	MoveCursor(x, y);
@@ -736,6 +769,7 @@ void PrintToPos(int x, int y, const char* str, ...)
 
 };
 
+// 현재 떨어지고 있는 블록 (테트리미노) 출력
 void PrintBlock(int x, int y)
 {
 	for (int i = 0; i < 4; i++)
@@ -748,6 +782,7 @@ void PrintBlock(int x, int y)
 	}
 }
 
+// 현재 떨어지고 있는 블록 (테트리미노)의 낙하지점 미리보기 출력
 void PrintBlock(int x, int y, bool isGhost)
 {
 	const char* sym = isGhost ? "▤" : BrickSym;
@@ -771,13 +806,15 @@ void PrintBlock(int x, int y, bool isGhost)
 	free(symColor);
 }
 
-
+// 블럭 회전
 Tetrimino RotateBlock(Tetrimino tetrimino, int rotate, int n)
 {
+	// 임시 테트리미노 선언 후 기존 테트리미노로 초기화, 블럭의 비정상적 회전을 막기 위함임.
 	Tetrimino tmp = tetrimino;
 
 	bool isCollision = false;
 
+	// 테트리미노의 회전 상태값 저장
 	tetrimino.rotateState += rotate;
 
 	for (int i = 0; i < n; i++)
@@ -785,12 +822,12 @@ Tetrimino RotateBlock(Tetrimino tetrimino, int rotate, int n)
 		for (int j = 0; j < n; j++)
 		{
 			if (rotate < 0)
-				tetrimino.bricks[i][j] = tmp.bricks[j][n - i - 1];
+				tetrimino.bricks[i][j] = tmp.bricks[j][n - i - 1]; // 90도 회전 (시계방향)
 			else
-				tetrimino.bricks[i][j] = tmp.bricks[n - j - 1][i];
+				tetrimino.bricks[i][j] = tmp.bricks[n - j - 1][i]; // -90도 회전 (반시계방향)
 
-
-			// Check if collision after rotate
+			// 회전 후 인근 블럭 또는 벽과 충돌할 경우 좌우로 한칸 이동시킴
+			// 회전 후 벽과 겹치지 않게 하기 위함임.
 			if (tetrimino.x + i >= 11)
 				tetrimino.x--;
 			else if(tetrimino.x + i < 1)
@@ -799,9 +836,11 @@ Tetrimino RotateBlock(Tetrimino tetrimino, int rotate, int n)
 		}
 	}
 
+	// 회전이 완료된 테트리미노를 반환
 	return tetrimino;
 }
 
+// 다음에 나올 블럭 출력
 void PrintNext()
 {
 	PrintToPos("NEXT", 31, 6);
@@ -818,6 +857,7 @@ void PrintNext()
 	}
 }
 
+// 홀드한 블럭 출력
 void PrintHold()
 {
 	PrintToPos("HOLD", 31, 1);
@@ -848,6 +888,7 @@ void PrintGhost()
 	int ghostY = CurrentBlock.y;
 	bool isCollision = false;
 
+	// Hard Down과 동일하나, 맵으로 이동시키진 않음.
 	while (!isCollision)
 	{
 		ghostY++;

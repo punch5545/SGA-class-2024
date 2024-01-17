@@ -13,7 +13,7 @@
 #define T_IDX 5
 #define I_IDX 6
 
-#define FRAME_RATE 165
+#define FRAME_RATE 60
 
 #define FRAME_PER_SECOND (1000 / FRAME_RATE)
 
