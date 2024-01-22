@@ -46,19 +46,23 @@ char screen1[Y_LENGTH][X_LENGTH] = { 0 };
 const unsigned char Sqr1 = -95;
 const unsigned char Sqr2 = -31;
 
+
 Heart hearts[HEARTS_CNT];
 
 int main()
 {
-    ZeroMemory(screen1, 121 * 30);
 
-    srand(time(NULL));
 
-    while (true)
-    {
-        Update();
-        Sleep(75);
-    }
+
+    //ZeroMemory(screen1, 121 * 30);
+
+    //srand(time(NULL));
+
+    //while (true)
+    //{
+    //    Update();
+    //    Sleep(75);
+    //}
 }
 
 void Update()
