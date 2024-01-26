@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2d400023-b8f6-4969-8644-8ab5f09d190c}</ProjectGuid>
-    <RootNamespace>ConGame</RootNamespace>
+    <ProjectGuid>{8ad1c4cc-178b-4f32-9ca7-f75c42b4d4f5}</ProjectGuid>
+    <RootNamespace>ConsoleTetris</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,24 +147,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConGame.cpp" />
-    <ClCompile Include="Functions.cpp" />
-    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="ConsoleTetris.cpp" />
+    <ClCompile Include="MainController.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Tetrimino.cpp" />
-    <ClCompile Include="TetriminoManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Functions.h" />
-    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="MainController.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Screen.h" />
     <ClInclude Include="Tetrimino.h" />
-    <ClInclude Include="TetriminoManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

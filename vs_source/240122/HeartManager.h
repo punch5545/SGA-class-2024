@@ -3,12 +3,14 @@
 class HeartManager
 {
 public:
-	Heart* m_Hearts[100];
+	Heart** m_Hearts;
 	int m_HeartsCount;
 	int m_objIdx;
 
 	HeartManager()
 	{
+		m_Hearts = new Heart*[100];
+
 		for (int i = 0; i < 100; i++)
 			m_Hearts[i] = NULL;
 

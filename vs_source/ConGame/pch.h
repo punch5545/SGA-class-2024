@@ -29,6 +29,7 @@
 #define KEY_C 99
 #define KEY_LEFT_CTRL 17
 
+using namespace std;
 
 typedef struct Tetrimino {
 	int index;
@@ -38,6 +39,26 @@ typedef struct Tetrimino {
 	int x, y;
 
 } Tetrimino;
+
+
+enum TetriminoType
+{
+	Square,
+	Z,
+	Z_Reverse,
+	L,
+	L_Reverse,
+	T,
+	I
+};
+
+enum Direction
+{
+	Left = KEY_LEFT,
+	Right = KEY_RIGHT,
+	Down = KEY_DOWN,
+	HardDown = KEY_SPACE
+};
 
 
 #endif //PCH_H

@@ -23,6 +23,7 @@ public:
 			}
 		}
 	}
+
 	void f_스크린그리기()
 	{
 		for (int y = 0; y < SCREEN_MAX_Y; y++)

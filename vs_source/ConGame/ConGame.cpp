@@ -19,7 +19,7 @@ int main()
 		if (_kbhit())
 		{
 			int key = _getch();
-			printf("Key Hitted: %c | %d", key, key);
+			//printf("Key Hitted: %c | %d", key, key);
 			if (isLoop) break;
 		}
 
