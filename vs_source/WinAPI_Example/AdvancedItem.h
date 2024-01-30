@@ -12,6 +12,5 @@ public:
     bool Buy() override;
     bool Sell() override;
 
-    int GetSubCount() override;
     bool hasSubItem(int idx) override;
 };

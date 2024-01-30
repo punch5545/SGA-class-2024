@@ -18,7 +18,7 @@ void Data::InitItems()
 
 	·Õ¼Òµå->Image = new Gdiplus::Image(L"images/·Õ¼Òµå.png");
 	´Ü°Ë->Image = new Gdiplus::Image(L"images/´Ü°Ë.png");
-	°î±ªÀÌ->Image = new Gdiplus::Image(L"images/°î±ªÀÌ.png");
+	°î±ªÀÌ->Image = new Gdiplus::Image(L"Images/°î±ªÀÌ.png");
 	¸ÁÅä->Image = new Gdiplus::Image(L"images/¸ÁÅä.png");
 	BF->Image = new Gdiplus::Image(L"images/BF.png");
 

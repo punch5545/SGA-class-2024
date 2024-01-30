@@ -35,7 +35,7 @@ bool ItemBase::Sell()
 
 int ItemBase::GetSubCount()
 {
-	return 0;
+	return this->SubItems.size();
 }
 
 bool ItemBase::hasSubItem(int idx)
@@ -46,6 +46,11 @@ bool ItemBase::hasSubItem(int idx)
 void ItemBase::SetSubItems(std::vector<int> SubItems)
 {
 	this->SubItems = SubItems;
+}
+
+std::vector<int> ItemBase::GetSubItems()
+{
+	return SubItems;
 }
 
 std::wstring ItemBase::GetItemInfo()

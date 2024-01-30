@@ -1,3 +1,4 @@
+#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 
 #include "pch.h"
 #include "Data.h"
@@ -9,13 +10,18 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 void DrawPNG(HDC hdc, int x, int y, int width, int height, std::wstring Path);
 void DrawPNG(HDC hdc, int x, int y, int width, int height, Gdiplus::Image* image);
 void DrawImageWithOpacity(HDC hdc, Gdiplus::Image* image, int x, int y, int width, int height, float opacity);
+void DrawSubItems(HDC hdc, ItemBase* itemBase, int x, int y, ItemGrade grade = LEGENDARY);
 
 Data *data;
 
 int hoverKey = -1;
+int currentClick = -1;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPSTR lpszCmdParam, int nCmdShow)
 {
+
+	UNREFERENCED_PARAMETER(prevInstance);
+	UNREFERENCED_PARAMETER(lpszCmdParam);
 
 	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
 	ULONG_PTR gdiplusToken;
@@ -87,15 +93,30 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_CREATE:break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 
-	case WM_PAINT:
-	{
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hwnd, &ps);
 
+	case WM_PAINT: {
+		PAINTSTRUCT ps;
+		/** 더블버퍼링 시작처리입니다. **/
+		static HDC hdc, MemDC, tmpDC;
+		static HBITMAP BackBit, oldBackBit;
+		static RECT bufferRT;
+		hdc = BeginPaint(hwnd, &ps);
+
+		GetClientRect(hwnd, &bufferRT);
+		MemDC = CreateCompatibleDC(hdc);
+		BackBit = CreateCompatibleBitmap(hdc, bufferRT.right, bufferRT.bottom);
+		oldBackBit = (HBITMAP)SelectObject(MemDC, BackBit);
+		PatBlt(MemDC, 0, 0, bufferRT.right, bufferRT.bottom, WHITENESS);
+		tmpDC = hdc;
+		hdc = MemDC;
+		MemDC = tmpDC;
+
+		// TODO: 여기에 그리기 코드를 추가합니다.
 		int padding = 10;
 		int i = 0;
 
@@ -108,12 +129,26 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			Rectangle(hdc, x, y, x + 64, y + 64);
 
-			if(hoverKey == key)
+			if (hoverKey == key)
+			{
 				DrawImageWithOpacity(hdc, value->Image, x, y, 64, 64, 0.5f);
+			}
 			else
 				DrawPNG(hdc, x, y, 64, 64, value->Image);
+
+			if (currentClick == key)
+				DrawSubItems(hdc, value, 100, y, LEGENDARY);
 		}
 
+		/** 더블버퍼링 끝처리 입니다. **/
+		tmpDC = hdc;
+		hdc = MemDC;
+		MemDC = tmpDC;
+		GetClientRect(hwnd, &bufferRT);
+		BitBlt(hdc, 0, 0, bufferRT.right, bufferRT.bottom, MemDC, 0, 0, SRCCOPY);
+		SelectObject(MemDC, oldBackBit);
+		DeleteObject(BackBit);
+		DeleteDC(MemDC);
 		EndPaint(hwnd, &ps);
 		break;
 	}
@@ -173,7 +208,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			int y = padding + (i++ * 80);
 
 			if (pt.x >= x && pt.x <= x + 64 && pt.y >= y && pt.y <= y + 64) {
-				MessageBox(NULL, data->GetItemInfo(value).c_str(), L"아이템 정보", MB_OK);
+				currentClick = key;
 				InvalidateRect(hwnd, NULL, TRUE);
 			}
 		}
@@ -216,4 +251,46 @@ void DrawImageWithOpacity(HDC hdc, Gdiplus::Image* image, int x, int y, int widt
 
 	// 이미지 그리기
 	graphics.DrawImage(image, Gdiplus::Rect(x, y, width, height), 0, 0, image->GetWidth(), image->GetHeight(), Gdiplus::UnitPixel, &imageAttributes);
+}
+
+void DrawSubItems(HDC hdc, ItemBase* itemBase, int x, int y, ItemGrade grade)
+{
+	int i = 1;
+	int padding = 10;
+
+	for (const auto& item : itemBase->GetSubItems())
+	{
+		switch (grade)
+		{
+		case BASIC: break;
+		case ADVANCED:
+			for (const auto& sub1 : data->BasicItems)
+			{
+				if (item == sub1.second->GetIndex())
+					DrawPNG(hdc, x + (64 * i) + (padding * i), y, 64, 64, sub1.second->Image);
+				i++;
+			}
+			break;
+		case LEGENDARY: 
+			for (const auto& sub1 : data->BasicItems)
+			{
+				if (item == sub1.second->GetIndex())
+				{
+					DrawPNG(hdc, x + (64 * i) + (padding * i), y, 64, 64, sub1.second->Image);
+					i++;
+				}
+			}
+			for (const auto& sub1 : data->AdvancedItems)
+			{
+				if (item == sub1.second->GetIndex())
+				{
+					DrawPNG(hdc, x + (64 * i) + (padding * i), y, 64, 64, sub1.second->Image);
+					i++;
+				}
+			}
+
+			break;
+		default:break;
+		}
+	}
 }

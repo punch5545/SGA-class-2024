@@ -15,6 +15,7 @@ public:
     virtual int GetSubCount();
     virtual bool hasSubItem(int idx);
     virtual void SetSubItems(std::vector<int> SubItems);
+    virtual std::vector<int> GetSubItems();
 
     std::wstring GetItemInfo();
 

@@ -27,11 +27,6 @@ bool LegendaryItem::Sell()
 	return false;
 }
 
-int LegendaryItem::GetSubCount()
-{
-	return 0;
-}
-
 bool LegendaryItem::hasSubItem(int idx)
 {
 	return false;

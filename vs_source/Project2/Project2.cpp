@@ -5,46 +5,48 @@
 #include <iostream>
 #include <Windows.h>
 
-#define X_LENGTH 121
-#define Y_LENGTH 29
-#define X_WALL ( X_LENGTH - 3 )
-#define Y_WALL ( Y_LENGTH - 1 )
+#include <stdlib.h>
 
-#define HEARTS_CNT 4
-
-typedef struct Heart {
-    int Shape[10][4] = {
-        { 3, 4, 8, 9 },
-        { 2, 5, 7, 10 },
-        { 1, 6, 11, -1 },
-        { 1, 11, -1, -1 },
-        { 1, 11, -1, -1 },
-        { 2, 10, -1, -1 },
-        { 3, 9, -1, -1 },
-        { 4, 8, -1, -1 },
-        { 5, 7, -1, -1 },
-        { 6, -1, -1, -1 }
-    };
-    int CoordX = 0;
-    int CoordY = 0;
-    int DirectionX = 0;
-    int DirectionY = 0;
-
-} Heart;
-
-void MoveCursor(int x, int y);
-void MoveHeart(Heart* heart);
-
-void PrintBackground();
-void PrintHeart(Heart heart);
-Heart PrintHeart(int xc, int yc);
-
-void Update();
-void InitHearts();
-
-char screen1[Y_LENGTH][X_LENGTH] = { 0 };
-const unsigned char Sqr1 = -95;
-const unsigned char Sqr2 = -31;
+//#define X_LENGTH 121
+//#define Y_LENGTH 29
+//#define X_WALL ( X_LENGTH - 3 )
+//#define Y_WALL ( Y_LENGTH - 1 )
+//
+//#define HEARTS_CNT 4
+//
+//typedef struct Heart {
+//    int Shape[10][4] = {
+//        { 3, 4, 8, 9 },
+//        { 2, 5, 7, 10 },
+//        { 1, 6, 11, -1 },
+//        { 1, 11, -1, -1 },
+//        { 1, 11, -1, -1 },
+//        { 2, 10, -1, -1 },
+//        { 3, 9, -1, -1 },
+//        { 4, 8, -1, -1 },
+//        { 5, 7, -1, -1 },
+//        { 6, -1, -1, -1 }
+//    };
+//    int CoordX = 0;
+//    int CoordY = 0;
+//    int DirectionX = 0;
+//    int DirectionY = 0;
+//
+//} Heart;
+//
+//void MoveCursor(int x, int y);
+//void MoveHeart(Heart* heart);
+//
+//void PrintBackground();
+//void PrintHeart(Heart heart);
+//Heart PrintHeart(int xc, int yc);
+//
+//void Update();
+//void InitHearts();
+//
+//char screen1[Y_LENGTH][X_LENGTH] = { 0 };
+//const unsigned char Sqr1 = -95;
+//const unsigned char Sqr2 = -31;
 
 
 Heart hearts[HEARTS_CNT];
@@ -52,7 +54,7 @@ Heart hearts[HEARTS_CNT];
 int main()
 {
 
-
+    printf("%d", rand());
 
     //ZeroMemory(screen1, 121 * 30);
 

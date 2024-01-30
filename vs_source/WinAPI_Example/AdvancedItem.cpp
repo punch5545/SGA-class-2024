@@ -27,11 +27,6 @@ bool AdvancedItem::Sell()
 	return false;
 }
 
-int AdvancedItem::GetSubCount()
-{
-	return 0;
-}
-
 bool AdvancedItem::hasSubItem(int idx)
 {
 	return false;
