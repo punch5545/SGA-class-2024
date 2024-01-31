@@ -11,5 +11,6 @@
 #include <tchar.h>
 //#include <list>
 #include <map>
+#include <list>
 #include <vector>
 #include <functional>

@@ -25,6 +25,12 @@
     <Filter Include="헤더 파일\Form\EventHandler">
       <UniqueIdentifier>{ce289fb3-8f50-4a49-9781-b86cbad7dc26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Game">
+      <UniqueIdentifier>{3411a6d9-6f20-4d69-ba0e-f1bfba961a2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game">
+      <UniqueIdentifier>{91a24147-d33c-43ce-80c8-eec996b349de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -48,6 +54,21 @@
     <ClInclude Include="EventArgs.h">
       <Filter>헤더 파일\Form\EventHandler</Filter>
     </ClInclude>
+    <ClInclude Include="CGame.h">
+      <Filter>헤더 파일\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Designer.h">
+      <Filter>헤더 파일\Form</Filter>
+    </ClInclude>
+    <ClInclude Include="CApp.h">
+      <Filter>헤더 파일\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Tetris.h">
+      <Filter>헤더 파일\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinProj01.cpp">
@@ -62,6 +83,21 @@
     <ClCompile Include="EventArgs.cpp">
       <Filter>소스 파일\Form\EventHandler</Filter>
     </ClCompile>
+    <ClCompile Include="Designer.cpp">
+      <Filter>소스 파일\Form</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>소스 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CApp.cpp">
+      <Filter>소스 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CImage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tetris.cpp">
+      <Filter>소스 파일\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProj01.rc">
@@ -73,6 +109,15 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="WinProj01.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Man.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="lion.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="mWall.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
