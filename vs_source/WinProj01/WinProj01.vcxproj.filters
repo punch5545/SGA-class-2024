@@ -54,20 +54,11 @@
     <ClInclude Include="EventArgs.h">
       <Filter>헤더 파일\Form\EventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="CGame.h">
-      <Filter>헤더 파일\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Designer.h">
       <Filter>헤더 파일\Form</Filter>
     </ClInclude>
-    <ClInclude Include="CApp.h">
-      <Filter>헤더 파일\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="CImage.h">
+    <ClInclude Include="Button.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Tetris.h">
-      <Filter>헤더 파일\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,17 +77,8 @@
     <ClCompile Include="Designer.cpp">
       <Filter>소스 파일\Form</Filter>
     </ClCompile>
-    <ClCompile Include="CGame.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="CApp.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="CImage.cpp">
+    <ClCompile Include="Button.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Tetris.cpp">
-      <Filter>소스 파일\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -83,16 +83,16 @@ namespace Form
     public:
         Control();
 
-        void Draw(HDC hdc);
+        virtual void Draw(HDC hdc) = 0;
 
     protected:
         Control(Coordinate position, bool enabled, bool visible);
 
-        //CtrlDelegate<const EventArgs*> Click;
-        //CtrlDelegate<const EventArgs*> Hover;
-        //CtrlDelegate<const EventArgs*> MouseDown;
-        //CtrlDelegate<const EventArgs*> MouseUp;
-        //CtrlDelegate<const EventArgs*> MouseMove;
+        CtrlDelegate<> Click;
+        CtrlDelegate<> Hover;
+        CtrlDelegate<> MouseDown;
+        CtrlDelegate<> MouseUp;
+        CtrlDelegate<> MouseMove;
 
         Coordinate Position;
         bool Enabled;

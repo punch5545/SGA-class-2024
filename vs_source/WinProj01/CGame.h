@@ -1,4 +1,11 @@
 #pragma once
+
+struct ImageConfig
+{
+	int dx, dy;
+	int width, height;
+};
+
 class CGame
 {
 public:

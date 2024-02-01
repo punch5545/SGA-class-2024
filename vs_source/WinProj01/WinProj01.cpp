@@ -4,9 +4,9 @@
 #include "pch.h"
 #include "framework.h"
 #include "WinProj01.h"
-#include "CGame.h"
-#include "CImage.h"
-#include "Tetris.h"
+//#include "CGame.h"
+//#include "CImage.h"
+//#include "Tetris.h"
 
 #pragma comment (lib, "Msimg32.lib")
 
@@ -25,8 +25,8 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-CGame* TheGame = nullptr;
-Tetris* TheTetris = nullptr;
+//CGame* TheGame = nullptr;
+//Tetris* TheTetris = nullptr;
 
 #pragma endregion 
 
@@ -42,10 +42,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: 여기에 코드를 입력합니다.
 
-    TheGame = new CGame();
-    TheGame->mhInstance = hInstance;
+    //TheGame = new CGame();
+    //TheGame->mhInstance = hInstance;
 
-    TheTetris = new Tetris();
+    //TheTetris = new Tetris();
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -132,29 +132,24 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 
-CImage* TheImage = NULL;
-CImage* TheImage2 = NULL;
-
-
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
     case WM_CREATE:
         SetTimer(hWnd, 101, 1000 / 10, NULL);
-        TheTetris->OnTimer();
 
         break;
 
     case WM_TIMER:
-        TheTetris->OnTimer();
-        InvalidateRect(hWnd, NULL, false);
+        //TheTetris->OnTimer();
+        //InvalidateRect(hWnd, NULL, false);
         break;
 
     case WM_KEYDOWN:
         break;
     case WM_CHAR:
-        TheTetris->KeyPressed(wParam);
+        //TheTetris->KeyPressed(wParam);
         break;
     case WM_COMMAND:
         {
@@ -178,20 +173,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            TheImage->Draw(hdc, 0, 0);
-            int a = RGB(255, 0, 255);
-            int b = 0xFF00FF;
-            TheImage2->TransDraw(hdc, 20, 20, 0xFF00FF);
-
-            TheTetris->Draw(hdc);
+            //TheTetris->Draw(hdc);
 
             EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
-        delete TheTetris;
-        delete TheGame;
+        
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

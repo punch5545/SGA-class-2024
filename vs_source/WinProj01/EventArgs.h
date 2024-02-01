@@ -12,6 +12,5 @@ namespace Form
 		WPARAM* wParam;
 		LPARAM* lParam;
 	};
+	extern EventArgs eventArgs;
 }
-
-
