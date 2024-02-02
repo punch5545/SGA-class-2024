@@ -1,18 +1,14 @@
-﻿// WinProj01.cpp : 애플리케이션에 대한 진입점을 정의합니다.
+﻿// WinProject240202.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "WinProj01.h"
-//#include "CGame.h"
-//#include "CImage.h"
-//#include "Tetris.h"
+#include "CApplication.h"
+#include "CGame.h"
 
-#pragma comment (lib, "Msimg32.lib")
+#include "main.h"
 
 #define MAX_LOADSTRING 100
-
-#pragma region Global Variables
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -25,12 +21,10 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-//CGame* TheGame = nullptr;
-//Tetris* TheTetris = nullptr;
 
-#pragma endregion 
+CApplication theApp;
+CGame* pGame = NULL;
 
-#pragma region Win32 Main
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -42,14 +36,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: 여기에 코드를 입력합니다.
 
-    //TheGame = new CGame();
-    //TheGame->mhInstance = hInstance;
-
-    //TheTetris = new Tetris();
-
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_WINPROJ01, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_WINPROJECT240202, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
     // 애플리케이션 초기화를 수행합니다:
@@ -58,7 +47,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINPROJ01));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINPROJECT240202));
 
     MSG msg;
 
@@ -75,13 +64,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     return (int) msg.wParam;
 }
 
-#pragma endregion
+
 
 //
 //  함수: MyRegisterClass()
 //
 //  용도: 창 클래스를 등록합니다.
 //
+
+
+
+
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
     WNDCLASSEXW wcex;
@@ -93,17 +86,16 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINPROJ01));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINPROJECT240202));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINPROJ01);
+    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINPROJECT240202);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
 }
 
-Form::Button* button1;
 //
 //   함수: InitInstance(HINSTANCE, int)
 //
@@ -125,7 +117,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    {
       return FALSE;
    }
-   button1 = new Form::Button(hWnd, L"Button 1", 50, 50, 150, 40);
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -133,27 +124,39 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-
+//
+//  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
+//
+//  용도: 주 창의 메시지를 처리합니다.
+//
+//  WM_COMMAND  - 애플리케이션 메뉴를 처리합니다.
+//  WM_PAINT    - 주 창을 그립니다.
+//  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
+//
+//
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+
     case WM_CREATE:
-
-
+        pGame = new CGame();
+        pGame->onCreate();
+        
         SetTimer(hWnd, 101, 1000 / 10, NULL);
+        break;
 
+    case WM_DESTROY:
+        pGame->onDestroy();
+        delete pGame;
+
+        KillTimer(hWnd, 101);
+        
+        PostQuitMessage(0);
         break;
 
     case WM_TIMER:
-        //TheTetris->OnTimer();
-        //InvalidateRect(hWnd, NULL, false);
-        break;
 
-    case WM_KEYDOWN:
-        break;
-    case WM_CHAR:
-        //TheTetris->KeyPressed(wParam);
         break;
     case WM_COMMAND:
         {
@@ -177,14 +180,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            //TheTetris->Draw(hdc);
+            pGame->onDraw(hdc);
 
+            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
-        break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

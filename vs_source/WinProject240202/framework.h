@@ -9,11 +9,3 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
-//#include <list>
-#include <map>
-#include <list>
-#include <vector>
-#include <functional>
-
-#include "Control.h"
-#include "Button.h"

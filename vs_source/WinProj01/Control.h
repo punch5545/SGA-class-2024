@@ -76,17 +76,41 @@ namespace Form
         std::list<std::function<void(ARGS...)>> functions;
     };
 
+    class MainForm
+    {
+    public:
+        static MainForm* mainFrm;
+        MainForm();
+        MainForm(HWND mainHandle);
+        ~MainForm();
+
+        bool SetHandle(HWND handle);
+        HWND GetHandle();
+
+    private:
+        HWND mainHandle;
+    };
 
     class Control
     {
-    private:
     public:
+        //virtual void Draw(HDC hdc) = 0;
+
         Control();
 
-        virtual void Draw(HDC hdc) = 0;
+        LPCWSTR Text;
+        LPCWSTR ClassName;
+
+        Coordinate Position;
+        bool Enabled;
+        bool Visible;
+
+        virtual HWND GetHandle();
 
     protected:
-        Control(Coordinate position, bool enabled, bool visible);
+        Control(LPCWSTR ClassName, LPCWSTR Text, Coordinate position, bool enabled, bool visible);
+        HWND mHandle;
+
 
         CtrlDelegate<> Click;
         CtrlDelegate<> Hover;
@@ -94,8 +118,5 @@ namespace Form
         CtrlDelegate<> MouseUp;
         CtrlDelegate<> MouseMove;
 
-        Coordinate Position;
-        bool Enabled;
-        bool Visible;
     };
 }
