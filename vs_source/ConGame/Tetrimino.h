@@ -1,29 +1,20 @@
 #pragma once
+#include "GameManager.h"
+
 class Tetrimino
 {
-	int PosX;
-	int PosY;
+	std::vector<std::vector<int>> Shape;
+	DWORD color;
 
-	string color;
-
-	int Shape[4][4];
 	TetriminoType type;
-
-	void MoveLeft();
-	void MoveRight();
-	void MoveDown();
-	void HardDown();
 
 public:
 	Tetrimino(TetriminoType type);
+	std::vector<std::vector<int>> GetShape();
+	DWORD GetColor();
 
-	void Draw();
+	int PosX;
+	int PosY;
 
-	void MoveTo(Direction dir);
 	void Rotate(bool isReverse);
-	bool CheckCollision();
-	bool CheckBottomCollision();
-
-	int GetPosX();
-	int GetPosY();
 };
