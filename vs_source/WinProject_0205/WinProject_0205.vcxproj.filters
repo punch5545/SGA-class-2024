@@ -65,13 +65,13 @@
     <ClCompile Include="CImageFile.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CSprite.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CGameFQ4.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CIntroScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WinProj08_Town\CSprite.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

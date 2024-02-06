@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "CGameFQ4.h"
 #include "CApplication.h"
 
 CApplication* CApplication::theApp = NULL;

@@ -1,5 +1,7 @@
 #pragma once
 
+class CGameFQ4;
+
 class CApplication
 {
 public:
@@ -12,6 +14,7 @@ public:
 
     HINSTANCE mhInst;
     HWND      mhWnd;
+    CGameFQ4* pGame;
 };
 
 

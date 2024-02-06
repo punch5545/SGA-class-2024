@@ -16,8 +16,6 @@ HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
-CGameFQ4* pGame = NULL;
-
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -107,7 +105,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      610, 290, 700, 500, nullptr, nullptr, hInstance, nullptr);
+      /*610*/0, /*290*/0, 700, 500, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -137,14 +135,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_CREATE:
-        pGame = new CGameFQ4;
-        pGame->onCreate();
+        CApplication::theApp->pGame = new CGameFQ4;
+        CApplication::theApp->pGame->onCreate();
 
         SetTimer(hWnd, 101, 1000 / 100, NULL);
         break;
 
     case WM_TIMER:
-        pGame->onFrameMove();
+        CApplication::theApp->pGame->onFrameMove();
         break;
 
     case WM_PAINT:
@@ -153,7 +151,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         HDC hdc = BeginPaint(hWnd, &ps);
         // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-        pGame->onDraw(hdc);
+        CApplication::theApp->pGame->onDraw(hdc);
 
         EndPaint(hWnd, &ps);
     }
@@ -162,8 +160,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     case WM_DESTROY:
         
-        pGame->onDestroy();
-        delete pGame;
+        CApplication::theApp->pGame->onDestroy();
+        delete CApplication::theApp->pGame;
         
         KillTimer(hWnd, 101);
 
