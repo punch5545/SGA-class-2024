@@ -10,4 +10,16 @@
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+
+#define WINDOW_WIDTH 667
+#define WINDOW_HEIGHT 539
+
+#define WINDOW_SCREEN_CENTER_X ((SCREEN_WIDTH / 2) - (WINDOW_WIDTH / 2))
+#define WINDOW_SCREEN_CENTER_Y ((SCREEN_HEIGHT / 2) - (WINDOW_HEIGHT / 2))
+
+#define WINDOW_INTERNAL_CENTER_X (WINDOW_WIDTH / 2)
+#define WINDOW_INTERNAL_CENTER_Y (WINDOW_HEIGHT / 2)
+
 #endif //PCH_H

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CImageFile.h"
 #include "CSprite.h"
+#include "../WinProject_0205/CSprite.h"
 
 void CSprite::Set(int dx, int dy, int sx, int sy, CImageFile* img, UINT color, TDrawType dt)
 {
@@ -31,4 +32,6 @@ void CSprite::Draw(HDC hdc)
                                 mTransColor);
         break;
     }
+    case DrawType_AlphaBlend:
+        break;
 }

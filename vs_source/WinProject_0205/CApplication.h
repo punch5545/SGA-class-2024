@@ -16,5 +16,3 @@ public:
     HWND      mhWnd;
     CGameFQ4* pGame;
 };
-
-

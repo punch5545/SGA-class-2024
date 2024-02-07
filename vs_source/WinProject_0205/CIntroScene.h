@@ -8,29 +8,40 @@ class CImageFile;
 class CIntroScene : public IScene
 {
 public:
-    CIntroScene();
+    CIntroScene(const WCHAR* ResourceFilename, std::vector<LPCWSTR> strList);
     ~CIntroScene();
 
     virtual bool isFinished() override;
     virtual void onFrameMove() override;
     virtual void onDraw(HDC hdc) override;
 
+    void setTextCoordinate(int x, int y)
+    {
+        TEXT_X = x;
+        TEXT_Y = y;
+
+        OUTLINE_X = x + 1;
+        OUTLINE_Y = y + 1;
+    }
+
 public:
     CImageFile* mLionFile;
     CSprite     mBG;
 
-    std::vector<LPCWSTR> strList = {
-        L"-아-아-! 으~! ···괴, 괴롭다~!",
-        L"내 혼에 열을 불어넣지 않으면",
-        L"이 몸은 곧 사라져 버릴텐데···",
-        L"···오! 북쪽에서 열기가 느껴 지는군!",
-        L"서둘러야겠다. 열기를 따라 내 혼을 북쪽으로···!"
-    };
+    std::vector<LPCWSTR> strList;
 
     HFONT font;
     HFONT oldfont;
 
+    int sleepTime = 1;
     float timeDelta = 0.0f;
+    bool goNext = false;
+    bool showText = true;
+
+    int TEXT_X;
+    int TEXT_Y;
+    int OUTLINE_X;
+    int OUTLINE_Y;
 
     int current_x;
     int current_y;

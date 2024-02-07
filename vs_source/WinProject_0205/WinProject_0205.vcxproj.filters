@@ -51,6 +51,12 @@
     <ClInclude Include="CIntroScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinProject_0205.cpp">
@@ -71,7 +77,13 @@
     <ClCompile Include="CIntroScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\WinProj08_Town\CSprite.cpp">
+    <ClCompile Include="CSprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitleScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -97,6 +109,36 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="Images\tree.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\4.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\5.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\6.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\7.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\8.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\Intro\9.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Images\MainTitle.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>

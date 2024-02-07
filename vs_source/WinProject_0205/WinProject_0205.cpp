@@ -7,7 +7,7 @@
 
 #include "CApplication.h"
 #include "CGameFQ4.h"
-
+#include "SceneManager.h"
 
 #define MAX_LOADSTRING 100
 
@@ -83,7 +83,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINPROJECT0205));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_WINPROJECT0205);
+    wcex.lpszMenuName   = NULL;
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -105,7 +105,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      /*610*/0, /*290*/0, 700, 500, nullptr, nullptr, hInstance, nullptr);
+      WINDOW_SCREEN_CENTER_X, WINDOW_SCREEN_CENTER_Y, WINDOW_WIDTH, WINDOW_HEIGHT, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -135,7 +135,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_CREATE:
+
         CApplication::theApp->pGame = new CGameFQ4;
+        SceneManager::Manager->CurrentGame = CApplication::theApp->pGame;
         CApplication::theApp->pGame->onCreate();
 
         SetTimer(hWnd, 101, 1000 / 100, NULL);

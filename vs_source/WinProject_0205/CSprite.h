@@ -1,34 +1,37 @@
 #pragma once
-
 class CImageFile;
 
 class CSprite
 {
 public:
-    int mDestX;
-    int mDestY;
-    int mDestWidth;
-    int mDestHeight;
+	int mDestX;
+	int mDestY;
+	int mDestWidth;
+	int mDestHeight;
 
-    int mSrcX;
-    int mSrcY;
-    int mSrcWidth;
-    int mSrcHeight;
+	int mSrcX;
+	int mSrcY;
+	int mSrcWidth;
+	int mSrcHeight;
 
-    UINT  mTransColor;
+	UINT mTransColor;//크로마키 색상
+	
+public:
+	enum TDrawType{
+		DrawType_Draw,
+		DrawType_Transparent, 
+		DrawType_AlphaBlend,
+		DrawType_FadeInOut,
+	};
+	TDrawType mDrawType;
+
+	CImageFile* mImgFile;
+
+	BYTE mAlpha;
 
 public:
-    enum TDrawType  {
-        DrawType_Transparent, 
-        DrawType_Draw,
-    };
-    TDrawType mDrawType;
-
-    CImageFile* mImgFile;
-
-    void Set(int dx, int dy, 
-             int sx, int sy, 
-             CImageFile* img, UINT color, TDrawType dt);
-    void Draw(HDC hdc);
+	CSprite() : mAlpha(0xFF) {};
+	void Set(int dx, int dy, int sx, int sy, CImageFile* img, UINT color, TDrawType dt);
+	void Draw(HDC hdc);
 };
 
