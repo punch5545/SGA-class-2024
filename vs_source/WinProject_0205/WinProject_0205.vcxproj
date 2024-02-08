@@ -138,6 +138,8 @@
     <ClInclude Include="CApplication.h" />
     <ClInclude Include="CGameFQ4.h" />
     <ClInclude Include="CIntroScene.h" />
+    <ClInclude Include="CMemoryBitmap.h" />
+    <ClInclude Include="CScreen.h" />
     <ClInclude Include="CTitleScene.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="CImageFile.h" />
@@ -155,6 +157,8 @@
     <ClCompile Include="CGameFQ4.cpp" />
     <ClCompile Include="CImageFile.cpp" />
     <ClCompile Include="CIntroScene.cpp" />
+    <ClCompile Include="CMemoryBitmap.cpp" />
+    <ClCompile Include="CScreen.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
     <ClCompile Include="pch.cpp">

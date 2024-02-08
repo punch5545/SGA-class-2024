@@ -83,7 +83,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINPROJECT0205));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = NULL;
+    wcex.lpszMenuName   = MAKEINTRESOURCE(IDC_WINPROJECT0205);
     wcex.lpszClassName  = szWindowClass;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -132,6 +132,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+
     switch (message)
     {
     case WM_CREATE:
@@ -164,7 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         
         CApplication::theApp->pGame->onDestroy();
         delete CApplication::theApp->pGame;
-        
+        CApplication::theApp->pGame = NULL;        
         KillTimer(hWnd, 101);
 
         PostQuitMessage(0);
@@ -182,14 +183,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
+
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
         }
         break;
-
-
     default:
+        if(CApplication::theApp->pGame != NULL) 
+            CApplication::theApp->pGame->onGameMessage(message, wParam);
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
@@ -197,6 +199,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    UNREFERENCED_PARAMETER(lParam);
+    switch (message)
+    {
+    case WM_INITDIALOG:
+        return (INT_PTR)TRUE;
+
+    case WM_COMMAND:
+        switch (LOWORD(wParam))
+        {
+        case IDC_NEWGAME:
+            MessageBox(hDlg, L"새 게임 시작", L"새 게임", MB_OK);
+            break;
+        case IDC_SLOT1: 
+            MessageBox(hDlg, L"1번 슬롯", L"1번", MB_OK);
+            break;
+        case IDC_SLOT2: 
+            MessageBox(hDlg, L"2번 슬롯", L"2번", MB_OK);
+            break;
+        case IDC_SLOT3: 
+            MessageBox(hDlg, L"3번 슬롯", L"3번", MB_OK);
+            break;
+        case IDC_SLOT4:            
+            MessageBox(hDlg, L"4번 슬롯", L"4번", MB_OK);
+            break;
+        default:break;
+        }
+        break;
+    }
+    return (INT_PTR)FALSE;
+}
+
+
+INT_PTR CALLBACK SelectSave(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     switch (message)

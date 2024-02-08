@@ -30,8 +30,7 @@ public:
 
     std::vector<LPCWSTR> strList;
 
-    HFONT font;
-    HFONT oldfont;
+    HFONT mFont;
 
     int sleepTime = 1;
     float timeDelta = 0.0f;

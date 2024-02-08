@@ -1,7 +1,10 @@
 #include "pch.h"
+#include "CApplication.h"
+#include "CGameFQ4.h"
+
 #include "CIntroScene.h"
 #include "CImageFile.h"
-#include "CGameFQ4.h"
+
 
 #include "SceneManager.h"
 
@@ -11,8 +14,7 @@ CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
 		 TEXT_X(0), TEXT_Y(0), 
 		 current_x(0), current_y(0), 
 		 dest_x(0), dest_y(0),
-		 font(NULL), oldfont(NULL),
-		strList(strList)
+		 mFont(NULL), strList(strList)
 {
     this->mLionFile = new CImageFile(ResourceFilename);
     this->mBG.Set(0, 0, 0, 0, mLionFile, 0, CSprite::DrawType_FadeInOut);
@@ -23,10 +25,15 @@ CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
 
 	dest_y = strList.size();
 	dest_x = wcslen(strList[current_y]);
+
+	mFont = CreateFont(22, 8, 0, 0, FW_BLACK, 0, 0, 0,
+		OEM_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, FF_DONTCARE, L"HY견명조");
 }
 
 CIntroScene::~CIntroScene()
 {
+	DeleteObject(mFont);
     delete this->mLionFile;
 }
 
@@ -37,9 +44,18 @@ bool CIntroScene::isFinished()
 
 void CIntroScene::onFrameMove()
 {
-	timeDelta+=0.2f;
+	if (CApplication::theApp->pGame->GetKeyDown(VK_ANYKEY))
+	{
+		if (SceneManager::Manager->SceneIdx < SceneManager::Manager->SceneList.size())
+		{
+			SceneManager::Manager->SceneIdx++;
+			SceneManager::Manager->LoadScene();
+		}
+	}
 
-	if (goNext && timeDelta >= 20)
+	timeDelta+=1.0f;
+
+	if (goNext && timeDelta >= 10)
 	{
 		if (mBG.mAlpha <= 0x05)
 		{
@@ -80,7 +96,7 @@ void CIntroScene::onFrameMove()
 			current_y = current_y < dest_y ? current_y + 1 : dest_y - 1;
 			current_x = current_y < dest_y ? 0 : wcslen(strList[current_y - 1]) - 1;
 			dest_x = current_y < dest_y ? wcslen(strList[current_y]) : wcslen(strList[current_y - 1]);
-			sleepTime = 10;
+			sleepTime = 5;
 		}
 	}
 }
@@ -92,11 +108,7 @@ void CIntroScene::onDraw(HDC hdc)
 	SetBkMode(hdc, TRANSPARENT);
 	SetTextAlign(hdc, TA_CENTER);
 
-	font = CreateFont(22, 8, 0, 0, FW_BLACK, 0, 0, 0, 
-		OEM_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, 
-		DEFAULT_QUALITY, FF_DONTCARE, L"궁서체");
-	oldfont = (HFONT)SelectObject(hdc, font);
-
+	HFONT oldFont = (HFONT)SelectObject(hdc, mFont);
 
 	if (showText)
 	{
@@ -137,8 +149,5 @@ void CIntroScene::onDraw(HDC hdc)
 
 	}
 	
-	SelectObject(hdc, oldfont);
-	DeleteObject(font);
-
-	//TextOut(hdc, 300, 280 + (i * 20), strList[i], ++j);
+	SelectObject(hdc, oldFont);
 }

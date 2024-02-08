@@ -9,6 +9,7 @@ public:
 
 	virtual void onFrameMove() override;
 	virtual void onDraw(HDC hdc) override;
+	virtual void onGameMessage(UINT msg, UINT wParam) override;
 
 public:
 };

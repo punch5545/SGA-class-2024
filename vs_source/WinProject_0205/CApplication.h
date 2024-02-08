@@ -7,6 +7,8 @@ class CApplication
 public:
     CApplication();
 
+    void About();
+
     void 화면갱신();
 
 public:

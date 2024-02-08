@@ -9,3 +9,18 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+
+
+#pragma region GameMessages
+
+#define VK_ANYKEY 0xFF
+
+#define GM_EXIT 0x00
+
+#define GM_NEWGAME 0xA0
+#define GM_SAVE1 0xA1
+#define GM_SAVE2 0xA2
+#define GM_SAVE3 0xA3
+#define GM_SAVE4 0xA4
+
+#pragma endregion

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CGameFQ4.h"
 #include "CIntroScene.h"
+#include "CTitleScene.h"
 #include "SceneManager.h"
 #include "Resource.h"
 
@@ -90,14 +91,8 @@ void CGameFQ4::onCreate()
 	mIntroScene->setTextCoordinate(WINDOW_INTERNAL_CENTER_X, WINDOW_INTERNAL_CENTER_Y);
 	SceneManager::Manager->SceneList.push_back(mIntroScene);
 
-	mIntroScene = new CIntroScene(MAKEINTRESOURCE(IDB_BLACK), {L"   "});
-	mIntroScene->setTextCoordinate(WINDOW_INTERNAL_CENTER_X, WINDOW_INTERNAL_CENTER_Y);
-	SceneManager::Manager->SceneList.push_back(mIntroScene);
-
-	mIntroScene = new CIntroScene(MAKEINTRESOURCE(IDB_MAIN_TITLE), { L"   " });
-	mIntroScene->setTextCoordinate(WINDOW_INTERNAL_CENTER_X, WINDOW_INTERNAL_CENTER_Y);
-	SceneManager::Manager->SceneList.push_back(mIntroScene);
-
+	CTitleScene* titleScene = new CTitleScene();
+	SceneManager::Manager->SceneList.push_back(titleScene);
 }
 
 void CGameFQ4::onDestroy()
@@ -119,4 +114,20 @@ void CGameFQ4::onDraw(HDC hdc)
 {
 	// OutputDebugString(L"Game Drawed\n");
 	__super::onDraw(hdc);
+}
+
+void CGameFQ4::onGameMessage(UINT msg, UINT wParam)
+{
+	if (mCurrent != NULL)
+	{
+		switch (msg)
+		{
+		case WM_KEYDOWN:
+			currentMessage = msg;
+			currentParam = wParam;
+			break;
+		default:
+			break;
+		}
+	}
 }

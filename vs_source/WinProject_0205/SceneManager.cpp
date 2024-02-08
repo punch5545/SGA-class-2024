@@ -12,10 +12,16 @@ SceneManager::SceneManager()
 	Manager = this;
 }
 
+
 void SceneManager::LoadScene()
 {
 	if (SceneList.size() > 0)
 	{
 		CurrentGame->mCurrent = SceneList[SceneIdx];
 	}
+}
+
+void SceneManager::LoadScene(IScene* Scene)
+{
+	CurrentGame->mCurrent = Scene;
 }

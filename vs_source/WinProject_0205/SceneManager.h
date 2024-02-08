@@ -17,7 +17,7 @@ public:
 	IGame* CurrentGame;
 	std::vector<IScene*> SceneList;
 
-
 	void LoadScene();
+	void LoadScene(IScene* Scene);
 };
 
