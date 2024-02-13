@@ -67,6 +67,10 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CGaussianBlur.h">
+    <ClInclude Include="IPostProcess.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="IGaussianBlur.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -105,6 +109,10 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="CGaussianBlur.cpp">
+    <ClCompile Include="IPostProcess.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="IGaussianBlur.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -18,6 +18,8 @@ public:
 	UINT32 getColor(int x, int y)			{ return m_Colors[y * m_BMI.bmiHeader.biWidth + x]; }
 	void setColor(int x, int y, UINT32 c)	{ m_Colors[y * m_BMI.bmiHeader.biWidth + x] = c; }
 
+
+
 	int getWidth()							{ return m_BMI.bmiHeader.biWidth; }
 	int getHeight()							{ return m_BMI.bmiHeader.biHeight; }
 

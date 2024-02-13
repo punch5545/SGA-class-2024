@@ -26,7 +26,7 @@ CMemoryBitmap::CMemoryBitmap(HDC hdcWnd, int width, int height)
 
 	m_Old = (HBITMAP)SelectObject(m_HDC, m_hBitmap);
 
-	Clear(0xFF000000);
+	Clear(0xFF00000);
 }
 
 CMemoryBitmap::~CMemoryBitmap()
