@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CMemoryBitmap.h"
+#include "CGaussianBlur.h"
 
 CMemoryBitmap::CMemoryBitmap(HDC hdcWnd, int width, int height)
 {
+
 	ZeroMemory(&m_BMI, sizeof(BITMAPINFO));
 	m_BMI.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 	m_BMI.bmiHeader.biWidth = width;
@@ -13,7 +15,15 @@ CMemoryBitmap::CMemoryBitmap(HDC hdcWnd, int width, int height)
 	m_BMI.bmiHeader.biSizeImage = width * height * 4;
 
 	m_HDC = CreateCompatibleDC(hdcWnd);
+	
+
+	
 	m_hBitmap = CreateDIBSection(m_HDC, &m_BMI, DIB_RGB_COLORS, (void**) & m_Colors, NULL, 0x0);
+
+	CGaussianBlur* blur = new CGaussianBlur(m_hBitmap, m_Colors, width, height, 9);
+	m_Colors = blur->Execute();
+
+
 	m_Old = (HBITMAP)SelectObject(m_HDC, m_hBitmap);
 
 	Clear(0xFF000000);

@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="CApplication.h" />
     <ClInclude Include="CGameFQ4.h" />
+    <ClInclude Include="CGaussianBlur.h" />
     <ClInclude Include="CIntroScene.h" />
     <ClInclude Include="CMemoryBitmap.h" />
     <ClInclude Include="CScreen.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="IScene.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="IShader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SceneManager.h" />
@@ -155,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="CApplication.cpp" />
     <ClCompile Include="CGameFQ4.cpp" />
+    <ClCompile Include="CGaussianBlur.cpp" />
     <ClCompile Include="CImageFile.cpp" />
     <ClCompile Include="CIntroScene.cpp" />
     <ClCompile Include="CMemoryBitmap.cpp" />
