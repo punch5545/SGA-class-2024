@@ -16,7 +16,7 @@ CMemoryBitmap::CMemoryBitmap(HDC hdcWnd, int width, int height)
 	m_hBitmap = CreateDIBSection(m_HDC, &m_BMI, DIB_RGB_COLORS, (void**) & m_Colors, NULL, 0x0);
 	m_Old = (HBITMAP)SelectObject(m_HDC, m_hBitmap);
 
-	Clear(0xFF000000);
+	Clear(0xFF00000);
 }
 
 CMemoryBitmap::~CMemoryBitmap()

@@ -157,10 +157,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         CApplication::theApp->pGame->onDraw(hdc);
 
         EndPaint(hWnd, &ps);
+        break;
     }
-    break;
 
+    case WM_KEYDOWN:
+        CApplication::theApp->pGame->onKeyDown(wParam);
+        break;
 
+    case WM_MOUSEMOVE:
+    {
+        CApplication::theApp->pGame->onMouseMove(LOWORD(lParam), HIWORD(lParam), wParam);
+        break;
+    }
+    case WM_RBUTTONDOWN:
+    case WM_MBUTTONDOWN:
+    case WM_LBUTTONDOWN:
+    {
+        CApplication::theApp->pGame->onMouseDown(LOWORD(lParam), HIWORD(lParam), wParam);
+        break;
+    }
     case WM_DESTROY:
         
         CApplication::theApp->pGame->onDestroy();

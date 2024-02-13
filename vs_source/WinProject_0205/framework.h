@@ -9,6 +9,8 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <iostream>
+#include <math.h>
 
 
 #pragma region GameMessages

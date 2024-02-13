@@ -24,6 +24,17 @@ public:
         }
     }
 
+    virtual void onKeyDown(UINT vKey) 
+    {
+    }
+
+    virtual void onMouseMove(int x, int y, char btn = 0x0000)
+    {
+    }
+    virtual void onMouseDown(int x, int y, char btn)
+    {
+    }
+
     virtual bool GetKeyDown(WORD keyCode)
     {
         bool res;

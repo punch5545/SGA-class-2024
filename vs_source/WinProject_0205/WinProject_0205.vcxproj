@@ -143,6 +143,8 @@
     <ClInclude Include="CTitleScene.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="CImageFile.h" />
+    <ClInclude Include="IGaussianBlur.h" />
+    <ClInclude Include="IPostProcess.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="framework.h" />
@@ -161,6 +163,8 @@
     <ClCompile Include="CScreen.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
+    <ClCompile Include="IGaussianBlur.cpp" />
+    <ClCompile Include="IPostProcess.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
