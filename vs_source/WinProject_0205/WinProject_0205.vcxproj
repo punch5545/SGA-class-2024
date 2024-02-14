@@ -139,12 +139,12 @@
     <ClInclude Include="CGameFQ4.h" />
     <ClInclude Include="CGaussianBlur.h" />
     <ClInclude Include="CIntroScene.h" />
+    <ClInclude Include="CLobbyScene.h" />
     <ClInclude Include="CMemoryBitmap.h" />
     <ClInclude Include="CScreen.h" />
     <ClInclude Include="CTitleScene.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="CImageFile.h" />
-    <ClInclude Include="IGaussianBlur.h" />
     <ClInclude Include="IPostProcess.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="CSprite.h" />
@@ -162,11 +162,11 @@
     <ClCompile Include="CGaussianBlur.cpp" />
     <ClCompile Include="CImageFile.cpp" />
     <ClCompile Include="CIntroScene.cpp" />
+    <ClCompile Include="CLobbyScene.cpp" />
     <ClCompile Include="CMemoryBitmap.cpp" />
     <ClCompile Include="CScreen.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
-    <ClCompile Include="IGaussianBlur.cpp" />
     <ClCompile Include="IPostProcess.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -175,7 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="WinProject_0205.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProject_0205.rc" />
@@ -192,6 +192,7 @@
     <Image Include="Images\Intro\8.bmp" />
     <Image Include="Images\Intro\9.bmp" />
     <Image Include="Images\lion.bmp" />
+    <Image Include="Images\Loby.bmp" />
     <Image Include="Images\MainTitle.bmp" />
     <Image Include="Images\town.bmp" />
     <Image Include="Images\tree.bmp" />

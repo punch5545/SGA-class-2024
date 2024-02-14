@@ -24,4 +24,30 @@
 
 #define PI 3.14159265
 
+struct RGBA {
+	BYTE B, G, R, A;
+
+	RGBA(BYTE r, BYTE g, BYTE b, BYTE a) : R(r), G(g), B(b), A(a) {}
+
+	RGBA operator+(RGBA right)
+	{
+		R += right.R;
+		G += right.G;
+		B += right.B;
+		A += right.A;
+
+		return *this;
+	}
+};
+
+union Color
+{
+	UINT32 color;
+	RGBA argb;
+
+	Color(UINT32 color) :color(color) {}
+	Color(RGBA argb) : argb(argb) {}
+	Color(BYTE r, BYTE g, BYTE b, BYTE a) : argb(RGBA(r, g, b, a)) {}
+};
+
 #endif //PCH_H

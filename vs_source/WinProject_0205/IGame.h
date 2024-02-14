@@ -3,6 +3,8 @@
 #include "CApplication.h"
 #include "IScene.h"
 #include "CScreen.h"
+#include "SceneManager.h"
+#include "CLobbyScene.h"
 
 class IGame
 {
@@ -26,6 +28,8 @@ public:
 
     virtual void onKeyDown(UINT vKey) 
     {
+        if (vKey == VK_RETURN)
+            SceneManager::Manager->LoadScene(new CLobbyScene());
     }
 
     virtual void onMouseMove(int x, int y, char btn = 0x0000)

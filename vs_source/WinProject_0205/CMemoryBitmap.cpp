@@ -15,18 +15,16 @@ CMemoryBitmap::CMemoryBitmap(HDC hdcWnd, int width, int height)
 	m_BMI.bmiHeader.biSizeImage = width * height * 4;
 
 	m_HDC = CreateCompatibleDC(hdcWnd);
-	
 
-	
 	m_hBitmap = CreateDIBSection(m_HDC, &m_BMI, DIB_RGB_COLORS, (void**) & m_Colors, NULL, 0x0);
 
-	CGaussianBlur* blur = new CGaussianBlur(m_hBitmap, m_Colors, width, height, 9);
-	m_Colors = blur->Execute();
+	//CGaussianBlur* blur = new CGaussianBlur(m_hBitmap, m_Colors, width, height, 9);
+	//m_Colors = blur->Execute();	
 
 
 	m_Old = (HBITMAP)SelectObject(m_HDC, m_hBitmap);
 
-	Clear(0xFF00000);
+	Clear(RGBA(255,100,200,255));
 }
 
 CMemoryBitmap::~CMemoryBitmap()
@@ -36,7 +34,7 @@ CMemoryBitmap::~CMemoryBitmap()
 	DeleteObject(m_hBitmap);
 }
 
-void CMemoryBitmap::Clear(UINT32 color)
+void CMemoryBitmap::Clear(Color color)
 {
 	int width = getWidth();
 	int height = getHeight();

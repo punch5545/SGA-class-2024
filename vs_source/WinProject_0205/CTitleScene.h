@@ -14,7 +14,6 @@ public:
     virtual void onFrameMove() override;
     virtual void onDraw(HDC hdc) override;
 
-    void SelectSave(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 public:
     CImageFile* mTitleFile;

@@ -1,11 +1,11 @@
 #include "pch.h"
+#include "CTitleScene.h"
+
 #include "CApplication.h"
 #include "CGameFQ4.h"
-
-#include "CTitleScene.h"
 #include "CImageFile.h"
-
 #include "SceneManager.h"
+
 #include "resource.h"
 
 CTitleScene::CTitleScene()
@@ -66,9 +66,11 @@ void CTitleScene::onDraw(HDC hdc)
 
 	if (CApplication::theApp->pGame->GetKeyDown(VK_ANYKEY))
 	{
-		CApplication::theApp->About();
-		goNext = true;
-		showText = false;
+		if (SceneManager::Manager->SceneIdx < SceneManager::Manager->SceneList.size())
+		{
+			SceneManager::Manager->SceneIdx++;
+			SceneManager::Manager->LoadScene();
+		}
 	}
 
 	SelectObject(hdc, oldFont);

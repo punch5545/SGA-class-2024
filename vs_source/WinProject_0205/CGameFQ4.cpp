@@ -2,6 +2,7 @@
 #include "CGameFQ4.h"
 #include "CIntroScene.h"
 #include "CTitleScene.h"
+#include "CLobbyScene.h"
 #include "SceneManager.h"
 #include "Resource.h"
 
@@ -93,6 +94,9 @@ void CGameFQ4::onCreate()
 
 	CTitleScene* titleScene = new CTitleScene();
 	SceneManager::Manager->SceneList.push_back(titleScene);
+
+	CLobbyScene* lobby = new CLobbyScene();
+	SceneManager::Manager->SceneList.push_back(lobby);
 }
 
 void CGameFQ4::onDestroy()
