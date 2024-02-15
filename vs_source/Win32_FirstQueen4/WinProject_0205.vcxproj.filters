@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CApplication.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameFQ4.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CGaussianBlur.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageFile.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CIntroScene.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CMemoryBitmap.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreen.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitleScene.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="IPostProcess.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="CLobbyScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WinProject_0205.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CLobbyScene.h" />
+    <ClInclude Include="CTitleScene.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CApplication.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameFQ4.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CGaussianBlur.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageFile.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CIntroScene.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CMemoryBitmap.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreen.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="IGame.h">
+      <Filter>헤더 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IPostProcess.h">
+      <Filter>헤더 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IScene.h">
+      <Filter>헤더 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IShader.h">
+      <Filter>헤더 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="framework.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스</Filter>
+    </Image>
+    <Image Include="WinProject_0205.ico">
+      <Filter>리소스</Filter>
+    </Image>
+    <Image Include="Images\town.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\MainTitle.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\lion.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\tree.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\SelectSave.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\Lobby.bmp">
+      <Filter>리소스\Bitmap</Filter>
+    </Image>
+    <Image Include="Images\Intro\9.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\1.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\2.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\3.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\4.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\5.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\6.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\7.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+    <Image Include="Images\Intro\8.bmp">
+      <Filter>리소스\Bitmap\Intro</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{3c1abe8e-a4b5-4ca4-a45f-8cce5a0f4d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Class">
+      <UniqueIdentifier>{ad0c8a98-6229-4caa-a1f3-a5887e7fb65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Interface">
+      <UniqueIdentifier>{6a334e7b-feee-40e0-b084-208a52062238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스">
+      <UniqueIdentifier>{fb47acd7-97cf-4452-8a92-4726a45f36bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{6b006a1d-6421-44c7-962f-35a137327108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스\Bitmap">
+      <UniqueIdentifier>{d09f9413-4b43-4459-8932-f951ddc8343b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Class">
+      <UniqueIdentifier>{a5ebec44-c27c-4c39-81aa-9888a8110db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Interface">
+      <UniqueIdentifier>{8eb09e76-62e9-43cd-8b7f-a7ec09fdda74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스\Bitmap\Intro">
+      <UniqueIdentifier>{a909989d-1208-44bf-926d-383f2f4c2e8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinProject_0205.rc">
+      <Filter>리소스</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
