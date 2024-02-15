@@ -141,6 +141,7 @@
     <ClInclude Include="CGaussianBlur.h" />
     <ClInclude Include="CIntroScene.h" />
     <ClInclude Include="CLobbyScene.h" />
+    <ClInclude Include="CMainStoryScene.h" />
     <ClInclude Include="CMemoryBitmap.h" />
     <ClInclude Include="CScreen.h" />
     <ClInclude Include="CTitleScene.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="CImageFile.cpp" />
     <ClCompile Include="CIntroScene.cpp" />
     <ClCompile Include="CLobbyScene.cpp" />
+    <ClCompile Include="CMainStoryScene.cpp" />
     <ClCompile Include="CMemoryBitmap.cpp" />
     <ClCompile Include="CScreen.cpp" />
     <ClCompile Include="CSprite.cpp" />

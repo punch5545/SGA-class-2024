@@ -39,6 +39,7 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CLobbyScene.cpp" />
+    <ClCompile Include="CMainStoryScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinProject_0205.h">
@@ -95,6 +96,7 @@
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="CMainStoryScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
