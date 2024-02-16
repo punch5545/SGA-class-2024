@@ -1,6 +1,9 @@
 #pragma once
-class CImageFile;
 
+#include <vector>
+
+
+class CImageFile;
 class CSprite
 {
 public:
@@ -29,6 +32,8 @@ public:
 
 	BYTE mAlpha;
 
+	std::vector<CALLBACK_FUNC> clickEvents;
+
 public:
 	CSprite() : 
 		mDestX(0),
@@ -52,4 +57,9 @@ public:
 	bool IsInRect(MousePos pos);
 	bool IsInRect(int x, int y, int width, int height);
 	bool IsInRect(RECT rect);
+
+	bool isClicked(int x, int y);
+	void onClick();
+
+	void addClickEvent(CALLBACK_FUNC func);
 };

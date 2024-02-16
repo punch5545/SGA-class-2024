@@ -12,6 +12,7 @@
 #include <tchar.h>
 #include <iostream>
 #include <math.h>
+#include <functional>
 
 
 #pragma region GameMessages

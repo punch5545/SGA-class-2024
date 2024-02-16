@@ -56,7 +56,9 @@ struct MousePos
 	MousePos() : X(0), Y(0) {}
 	int X;
 	int Y;
-
 };
+
+
+typedef std::function<void()> CALLBACK_FUNC;
 
 #endif //PCH_H

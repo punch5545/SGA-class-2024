@@ -24,12 +24,17 @@
 #define IDB_INTRO7                      140
 #define IDB_INTRO8                      141
 #define IDB_BLACK                       142
-#define IDB_BITMAP1                     143
 #define IDB_MAIN_TITLE                  143
 #define IDB_LOBBY                       145
 #define IDB_PNG1                        146
-#define IDB_BITMAP2                     147
 #define IDB_SELECTBG                    147
+#define IDB_CASTEL                      149
+#define IDB_FRAME                       150
+#define IDB_INTERFACE                   151
+#define IDB_MB_NPC                      152
+#define IDB_SOLDIER2_LEFT               153
+#define IDB_SOLDIER1                    154
+#define IDB_MB_SYS                      155
 #define IDC_NEWGAME                     1000
 #define IDC_SLOT1                       1001
 #define IDC_SLOT2                       1002
@@ -42,7 +47,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        149
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1001
 #define _APS_NEXT_SYMED_VALUE           110

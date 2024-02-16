@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h" />
+    <ClInclude Include="CCharacter.h" />
     <ClInclude Include="CGameFQ4.h" />
     <ClInclude Include="CGaussianBlur.h" />
     <ClInclude Include="CIntroScene.h" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CApplication.cpp" />
+    <ClCompile Include="CCharacter.cpp" />
     <ClCompile Include="CGameFQ4.cpp" />
     <ClCompile Include="CGaussianBlur.cpp" />
     <ClCompile Include="CImageFile.cpp" />
@@ -184,6 +186,7 @@
     <ResourceCompile Include="WinProject_0205.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Images\castel.bmp" />
     <Image Include="Images\Intro\1.bmp" />
     <Image Include="Images\Intro\2.bmp" />
     <Image Include="Images\Intro\3.bmp" />
@@ -197,6 +200,12 @@
     <Image Include="Images\Lobby.bmp" />
     <Image Include="Images\MainTitle.bmp" />
     <Image Include="Images\SelectSave.bmp" />
+    <Image Include="Images\Sprites\frame.bmp" />
+    <Image Include="Images\Sprites\interface.bmp" />
+    <Image Include="Images\Sprites\NPCMessageBox.bmp" />
+    <Image Include="Images\Sprites\soldier2_left.bmp" />
+    <Image Include="Images\Sprites\soldierSprite.bmp" />
+    <Image Include="Images\Sprites\systemMessageBox.bmp" />
     <Image Include="Images\town.bmp" />
     <Image Include="Images\tree.bmp" />
     <Image Include="small.ico" />

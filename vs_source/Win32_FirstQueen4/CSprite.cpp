@@ -74,3 +74,21 @@ bool CSprite::IsInRect(RECT rect)
 
 	return false;
 }
+
+bool CSprite::isClicked(int x, int y)
+{
+	return false;
+}
+
+void CSprite::onClick()
+{
+	for (auto& function : clickEvents)
+	{
+		function();
+	}
+}
+
+void CSprite::addClickEvent(CALLBACK_FUNC func)
+{
+	clickEvents.push_back(func);
+}

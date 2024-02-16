@@ -39,6 +39,10 @@ public:
     }
     virtual void onMouseDown(int x, int y, char btn)
     {
+        CApplication::theApp->mMousePos.X = x;
+        CApplication::theApp->mMousePos.Y = y;
+
+        CApplication::theApp->mMouseBtn = btn;
     }
 
     virtual bool GetKeyDown(WORD keyCode)

@@ -40,6 +40,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CLobbyScene.cpp" />
     <ClCompile Include="CMainStoryScene.cpp" />
+    <ClCompile Include="CCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinProject_0205.h">
@@ -97,6 +98,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="CMainStoryScene.h" />
+    <ClInclude Include="CCharacter.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -111,16 +113,7 @@
     <Image Include="Images\MainTitle.bmp">
       <Filter>리소스\Bitmap</Filter>
     </Image>
-    <Image Include="Images\lion.bmp">
-      <Filter>리소스\Bitmap</Filter>
-    </Image>
     <Image Include="Images\tree.bmp">
-      <Filter>리소스\Bitmap</Filter>
-    </Image>
-    <Image Include="Images\SelectSave.bmp">
-      <Filter>리소스\Bitmap</Filter>
-    </Image>
-    <Image Include="Images\Lobby.bmp">
       <Filter>리소스\Bitmap</Filter>
     </Image>
     <Image Include="Images\Intro\9.bmp">
@@ -150,6 +143,34 @@
     <Image Include="Images\Intro\8.bmp">
       <Filter>리소스\Bitmap\Intro</Filter>
     </Image>
+    <Image Include="Images\Sprites\frame.bmp" />
+    <Image Include="Images\castel.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Sprites\interface.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\lion.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Lobby.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Sprites\NPCMessageBox.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Sprites\soldier2_left.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Sprites\soldierSprite.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\Sprites\systemMessageBox.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
+    <Image Include="Images\SelectSave.bmp">
+      <Filter>리소스\Bitmap\Sprites</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -178,6 +199,9 @@
     </Filter>
     <Filter Include="리소스\Bitmap\Intro">
       <UniqueIdentifier>{a909989d-1208-44bf-926d-383f2f4c2e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="리소스\Bitmap\Sprites">
+      <UniqueIdentifier>{c36bd532-f1ce-4a2a-9038-aa6949ee04e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

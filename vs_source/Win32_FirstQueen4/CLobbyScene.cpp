@@ -5,6 +5,7 @@
 #include "CGameFQ4.h"
 #include "CImageFile.h"
 #include "SceneManager.h"
+#include "CMainStoryScene.h"
 
 #include "resource.h"
 
@@ -41,6 +42,19 @@ CLobbyScene::CLobbyScene()
 	saveFiles.push_back(SaveFile(L".\\", L"우리집/입구",		80));
 	saveFiles.push_back(SaveFile(L".\\", L"너네집/출구",		10));
 	saveFiles.push_back(SaveFile(L".\\", L"카리온성",		8));
+
+	for (int i = 0; i < mSelectBGs.size(); i++)
+	{
+		if (i < mSelectBGs.size() - 1)
+		{
+			LPCWSTR saveName = saveFiles[i].saveName;
+			mSelectBGs[i].addClickEvent(([=]() { OutputDebugStringW(saveName); }));
+		}
+		else
+		{
+			mSelectBGs[i].addClickEvent(([&]() { OutputDebugStringW(L" >> 새 게임 "); }));
+		}
+	}
 }
 
 CLobbyScene::~CLobbyScene()
@@ -56,17 +70,23 @@ bool CLobbyScene::isFinished()
 
 void CLobbyScene::onFrameMove()
 {
-	for (int i = 0; i < mSelectBGs.size(); i++)
+	for (auto& selectBG : mSelectBGs)
 	{
-		if (mSelectBGs[i].IsInRect(CApplication::theApp->mMousePos))
+		if (selectBG.IsInRect(CApplication::theApp->mMousePos))
 		{
-			mSelectBGs[i].mAlpha = 0xFF;
+			selectBG.mAlpha = 0xFF;
+			if (CApplication::theApp->mMouseBtn == VK_LBUTTON)
+			{
+				selectBG.onClick();
+			}
 		}
 		else
 		{
-			mSelectBGs[i].mAlpha = 0x00;
+			selectBG.mAlpha = 0x00;
 		}
 	}
+
+	CApplication::theApp->mMouseBtn = 0;
 }
 
 void CLobbyScene::onDraw(HDC hdc)

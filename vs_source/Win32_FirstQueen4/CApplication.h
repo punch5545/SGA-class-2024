@@ -20,4 +20,6 @@ public:
     HWND      mhWnd;
     CGameFQ4* pGame;
 
+    char mMouseBtn;
+    char mKeyboard;
 };
