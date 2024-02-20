@@ -5,8 +5,9 @@
 #include "CIntroScene.h"
 #include "CImageFile.h"
 
-
 #include "SceneManager.h"
+
+#include "resource.h"
 
 CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
 	std::vector<LPCWSTR> strList)
@@ -20,6 +21,12 @@ CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
     this->mBG.Set(0, 0, 0, 0, mLionFile, 0, CSprite::DrawType_FadeInOut);
 	this->mBG.mAlpha = 0x00;
 
+	mCharAnim.ImgFile = new CImageFile(MAKEINTRESOURCE(IDB_ANIMCHAR));
+	mCharAnim.Anim->CreateSample();
+
+	std::wstring animName = L"CharacterF";
+	mCharSprite.Set(animName, 0, 0, mCharAnim.ImgFile, 0, CSprite::DrawType_Transparent);
+
 	current_x = 1;
 	current_y = 0;
 
@@ -29,6 +36,7 @@ CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
 	mFont = CreateFont(22, 8, 0, 0, FW_BLACK, 0, 0, 0,
 		OEM_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 		DEFAULT_QUALITY, FF_DONTCARE, L"HY°ß¸íÁ¶");
+
 }
 
 CIntroScene::~CIntroScene()
@@ -44,6 +52,8 @@ bool CIntroScene::isFinished()
 
 void CIntroScene::onFrameMove()
 {
+	mCharSprite.Update(10);
+
 	if (CApplication::theApp->pGame->GetKeyDown(VK_ANYKEY))
 	{
 		if (SceneManager::Manager->SceneIdx < SceneManager::Manager->SceneList.size())
@@ -104,6 +114,8 @@ void CIntroScene::onFrameMove()
 void CIntroScene::onDraw(HDC hdc)
 {
     mBG.Draw(hdc);
+
+	mCharSprite.Draw(hdc);
 
 	SetBkMode(hdc, TRANSPARENT);
 	SetTextAlign(hdc, TA_CENTER);

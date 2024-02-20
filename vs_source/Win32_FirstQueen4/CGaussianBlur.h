@@ -1,6 +1,6 @@
 #pragma once
 #include "IShader.h"
-#include <vector>
+
 
 class CGaussianBlur :
     public IShader

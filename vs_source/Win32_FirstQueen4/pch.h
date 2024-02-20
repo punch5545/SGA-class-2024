@@ -50,12 +50,37 @@ union Color
 	Color(BYTE r, BYTE g, BYTE b, BYTE a) : argb(RGBA(r, g, b, a)) {}
 };
 
-struct MousePos
+struct Vector2
 {
-	MousePos(int x, int y) : X(x), Y(y) {}
-	MousePos() : X(0), Y(0) {}
+	Vector2(int x, int y) : X(x), Y(y) {}
+	Vector2() : X(0), Y(0) {}
 	int X;
 	int Y;
+};
+
+struct Vector3
+{
+	Vector3() 
+		: X(0), Y(0), Z(0) {}
+	Vector3(double X, double Y, double Z)
+		: X(X), Y(Y), Z(Z) {}
+
+	double X;
+	double Y;
+	double Z;
+};
+
+struct RectTransform
+{
+	RectTransform()
+		: Left(0), Right(0), Top(0), Bottom(0) {}
+	RectTransform(double left, double right, double top, double bottom) 
+		: Left(left), Right(right), Top(top), Bottom(bottom) {}
+
+	double Left;
+	double Right;
+	double Top;
+	double Bottom;
 };
 
 

@@ -52,7 +52,11 @@ CLobbyScene::CLobbyScene()
 		}
 		else
 		{
-			mSelectBGs[i].addClickEvent(([&]() { OutputDebugStringW(L" >> 새 게임 "); }));
+			mSelectBGs[i].addClickEvent(([&]() { 
+				OutputDebugStringW(L" >> 새 게임 ");
+
+
+			}));
 		}
 	}
 }

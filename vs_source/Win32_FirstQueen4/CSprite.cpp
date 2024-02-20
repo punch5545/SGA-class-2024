@@ -2,6 +2,7 @@
 #include "CImagefile.h"
 #include "CSprite.h"
 
+
 void CSprite::Set(int dx, int dy, int sx, int sy, CImageFile* img, UINT color, TDrawType dt)
 {
 	mDestX = dx;
@@ -53,7 +54,7 @@ bool CSprite::IsInRect(int x, int y)
 	return false;
 }
 
-bool CSprite::IsInRect(MousePos pos)
+bool CSprite::IsInRect(Vector2 pos)
 {
 	return IsInRect(pos.X, pos.Y);
 }

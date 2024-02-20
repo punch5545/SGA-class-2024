@@ -1,8 +1,5 @@
 #pragma once
 #include "CSprite.h"
-#include <vector>
-#include <map>
-#include <string>
 
 class CCharacter
 {

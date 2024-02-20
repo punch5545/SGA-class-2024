@@ -1,8 +1,8 @@
 #pragma once
 #include "IScene.h"
 #include "CSprite.h"
-#include <vector>
-#include <map>
+
+
 
 class CLobbyScene : public IScene
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include "IScene.h"
 #include "CSprite.h"
-#include <vector>
+#include "CSpriteAnimation.h"
 
 class CImageFile;
 
@@ -27,6 +27,9 @@ public:
 public:
     CImageFile* mLionFile;
     CSprite     mBG;
+
+    AnimFile mCharAnim;
+    CFrameSprite mCharSprite;
 
     std::vector<LPCWSTR> strList;
 

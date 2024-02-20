@@ -6,7 +6,7 @@
 #include "SceneManager.h"
 #include "Resource.h"
 
-#include <vector>
+
 
 void CGameFQ4::onCreate()
 {

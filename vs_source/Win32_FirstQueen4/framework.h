@@ -13,6 +13,11 @@
 #include <iostream>
 #include <math.h>
 #include <functional>
+#include <vector>
+#include <map>
+#include <string>
+
+
 
 
 #pragma region GameMessages

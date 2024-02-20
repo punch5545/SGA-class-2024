@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+
 
 
 class CImageFile;
@@ -51,10 +51,11 @@ public:
 	{
 
 	};
+public:
 	void Set(int dx, int dy, int sx, int sy, CImageFile* img, UINT color, TDrawType dt);
 	void Draw(HDC hdc);
 	bool IsInRect(int x, int y);
-	bool IsInRect(MousePos pos);
+	bool IsInRect(Vector2 pos);
 	bool IsInRect(int x, int y, int width, int height);
 	bool IsInRect(RECT rect);
 

@@ -13,7 +13,7 @@ CApplication::CApplication()
     mhInst = NULL;
     mhWnd = NULL;
     pGame = NULL;
-    mMousePos = MousePos(0,0);
+    mMousePos = Vector2(0,0);
 }
 void CApplication::About()
 {

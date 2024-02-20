@@ -7,28 +7,16 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CApplication.cpp">
-      <Filter>소스 파일\Class</Filter>
-    </ClCompile>
     <ClCompile Include="CGameFQ4.cpp">
       <Filter>소스 파일\Class</Filter>
     </ClCompile>
     <ClCompile Include="CGaussianBlur.cpp">
       <Filter>소스 파일\Class</Filter>
     </ClCompile>
-    <ClCompile Include="CImageFile.cpp">
-      <Filter>소스 파일\Class</Filter>
-    </ClCompile>
     <ClCompile Include="CIntroScene.cpp">
       <Filter>소스 파일\Class</Filter>
     </ClCompile>
-    <ClCompile Include="CMemoryBitmap.cpp">
-      <Filter>소스 파일\Class</Filter>
-    </ClCompile>
     <ClCompile Include="CScreen.cpp">
-      <Filter>소스 파일\Class</Filter>
-    </ClCompile>
-    <ClCompile Include="CSprite.cpp">
       <Filter>소스 파일\Class</Filter>
     </ClCompile>
     <ClCompile Include="CTitleScene.cpp">
@@ -38,9 +26,33 @@
       <Filter>소스 파일\Interface</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="CLobbyScene.cpp" />
-    <ClCompile Include="CMainStoryScene.cpp" />
-    <ClCompile Include="CCharacter.cpp" />
+    <ClCompile Include="ICamera.cpp">
+      <Filter>소스 파일\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainStoryScene.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CCharacter.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CLobbyScene.cpp">
+      <Filter>소스 파일\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="CApplication.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CImageFile.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CMemoryBitmap.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpriteAnimation.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinProject_0205.h">
@@ -55,7 +67,6 @@
     <ClInclude Include="targetver.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CLobbyScene.h" />
     <ClInclude Include="CTitleScene.h">
       <Filter>헤더 파일\Class</Filter>
     </ClInclude>
@@ -68,19 +79,7 @@
     <ClInclude Include="CGaussianBlur.h">
       <Filter>헤더 파일\Class</Filter>
     </ClInclude>
-    <ClInclude Include="CImageFile.h">
-      <Filter>헤더 파일\Class</Filter>
-    </ClInclude>
     <ClInclude Include="CIntroScene.h">
-      <Filter>헤더 파일\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="CMemoryBitmap.h">
-      <Filter>헤더 파일\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="CScreen.h">
-      <Filter>헤더 파일\Class</Filter>
-    </ClInclude>
-    <ClInclude Include="CSprite.h">
       <Filter>헤더 파일\Class</Filter>
     </ClInclude>
     <ClInclude Include="IGame.h">
@@ -97,8 +96,33 @@
     </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="CMainStoryScene.h" />
-    <ClInclude Include="CCharacter.h" />
+    <ClInclude Include="ICamera.h">
+      <Filter>헤더 파일\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainStoryScene.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CLobbyScene.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CCharacter.h">
+      <Filter>헤더 파일\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="CImageFile.h">
+      <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CMemoryBitmap.h">
+      <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreen.h">
+      <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CSprite.h">
+      <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpriteAnimation.h">
+      <Filter>헤더 파일\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
@@ -171,6 +195,7 @@
     <Image Include="Images\SelectSave.bmp">
       <Filter>리소스\Bitmap\Sprites</Filter>
     </Image>
+    <Image Include="Images\Sprites\char.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -202,6 +227,12 @@
     </Filter>
     <Filter Include="리소스\Bitmap\Sprites">
       <UniqueIdentifier>{c36bd532-f1ce-4a2a-9038-aa6949ee04e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{1bf9980b-a302-4784-8083-fa1ce82e6f67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Engine">
+      <UniqueIdentifier>{854572fa-e150-4835-bcfe-9f2c464a5d40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

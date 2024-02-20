@@ -14,7 +14,7 @@ public:
 public:
     static CApplication* theApp;
 
-    MousePos mMousePos;
+    Vector2 mMousePos;
 
     HINSTANCE mhInst;
     HWND      mhWnd;
