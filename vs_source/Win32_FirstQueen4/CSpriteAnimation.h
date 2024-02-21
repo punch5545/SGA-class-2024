@@ -41,7 +41,6 @@ class CSpriteAnimation
 {
 
 public:
-	CSpriteAnimation();
 	~CSpriteAnimation();
 	void CreateSample();
 	FrameAnim* Find(std::wstring& name);
@@ -56,7 +55,7 @@ struct AnimFile
 	CSpriteAnimation* Anim;
 };
 
-class CFrameSprite: public CSprite
+class CFrameSprite : public CSprite
 {
 public:
 	CSpriteAnimation* mAnim;
@@ -64,6 +63,7 @@ public:
 
 	FrameAnimInstance mAnimInst;
 
-	void Set(std::wstring& name, int dx, int dy, CImageFile* img, UINT color, TDrawType dt);
+	void Set(const WCHAR* pname, int dx, int dy, CImageFile* img, CSpriteAnimation* anim, UINT color, TDrawType dt);
 	void Update(int dt);
+	void ChangeAnimation(std::wstring& name);
 };

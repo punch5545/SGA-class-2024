@@ -50,5 +50,8 @@ public:
 
     int dest_x;
     int dest_y;
+
+    int firFrameCount;
+    int lastFrameCnt;
 };
 

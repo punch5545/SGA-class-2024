@@ -21,11 +21,11 @@ CIntroScene::CIntroScene(const WCHAR* ResourceFilename,
     this->mBG.Set(0, 0, 0, 0, mLionFile, 0, CSprite::DrawType_FadeInOut);
 	this->mBG.mAlpha = 0x00;
 
+	mCharAnim.Anim = new CSpriteAnimation;
 	mCharAnim.ImgFile = new CImageFile(MAKEINTRESOURCE(IDB_ANIMCHAR));
 	mCharAnim.Anim->CreateSample();
 
-	std::wstring animName = L"CharacterF";
-	mCharSprite.Set(animName, 0, 0, mCharAnim.ImgFile, 0, CSprite::DrawType_Transparent);
+	mCharSprite.Set(L"CharacterF", 0, 0, mCharAnim.ImgFile, mCharAnim.Anim, 0xFFFF00FF, CSprite::DrawType_Transparent);
 
 	current_x = 1;
 	current_y = 0;
@@ -53,6 +53,19 @@ bool CIntroScene::isFinished()
 void CIntroScene::onFrameMove()
 {
 	mCharSprite.Update(10);
+
+	static int df = 500;
+	static std::wstring name = L"CharacterF";
+	df -= 10;
+	if (df < 0)
+	{
+
+		if (name == L"CharacterF") { name = L"CharacterR"; }
+		else { name = L"CharacterR"; }
+
+		mCharSprite.ChangeAnimation(name);
+		df = 500;
+	}
 
 	if (CApplication::theApp->pGame->GetKeyDown(VK_ANYKEY))
 	{
